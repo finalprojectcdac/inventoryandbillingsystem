@@ -1,3 +1,5 @@
+//Created by Vaibhav
+
 package inb.models;
 
 public class Inventory
