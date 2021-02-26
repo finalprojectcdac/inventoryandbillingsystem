@@ -2,8 +2,13 @@
 
 package inb.models;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Inventory
 {
+	@Id
 	private String item_code;
 	private String brand, item_name, unit_measurement, stock_entry_date, item_category, supplier_invoice_no;
 	private float unit_price, total_value;

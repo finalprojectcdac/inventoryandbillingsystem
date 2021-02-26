@@ -1,19 +1,23 @@
 package inb.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import inb.dao.DaoInterface;
 import inb.models.CResult;
 import inb.models.Inventory;
 
+
 @Service
 public class ServiceImplementation implements ServiceInterface {
-
+	@Autowired
+	private DaoInterface ar;
 	@Override
 	public CResult addItem(Inventory item) {
 		// TODO Auto-generated method stub
 		CResult c1 =new CResult(0, item, "failed due to user");
 		try {
-			//ar.save(c);
+			ar.save(item);
 			c1.setStatus(1);
 			c1.setReason("success");
 			//item.toString();
