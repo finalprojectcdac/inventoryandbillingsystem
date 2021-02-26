@@ -10,9 +10,11 @@ import inb.models.Inventory;
 
 @Service
 public class ServiceImplementation implements ServiceInterface {
+	
 	@Autowired
 	private DaoInterface ar;
-	@Override
+	
+	
 	public CResult addItem(Inventory item) {
 		// TODO Auto-generated method stub
 		CResult c1 =new CResult(0, item, "failed due to user");
