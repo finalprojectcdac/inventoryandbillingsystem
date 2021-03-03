@@ -1,9 +1,16 @@
 package inb.models;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
 public class SupplierRecord {
 
-	private String supplier_code;
+	@Id
 	private String supplier_name;
+	
+	private String supplier_code;
 	private String supplier_invoice_number;
 	private float supplier_invoice_value;
 	
@@ -70,6 +77,8 @@ public class SupplierRecord {
 				+ ", supplier_invoice_number=" + supplier_invoice_number + ", supplier_invoice_value="
 				+ supplier_invoice_value + "]";
 	}
+
+
 	
 	
 }

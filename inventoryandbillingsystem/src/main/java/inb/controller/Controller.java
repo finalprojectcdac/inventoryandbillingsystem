@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import inb.models.CResult;
 import inb.models.Inventory;
+import inb.models.SupplierRecord;
 import inb.service.ServiceInterface;
 
 
@@ -28,6 +29,13 @@ public class Controller
 	public CResult addItem(@RequestBody Inventory item){
 		
 		CResult x= s.addItem(item); 
+		return x;
+	}
+	
+	@PutMapping("/saveSupplierRecordFromInventorypage")
+	public CResult addSupplier(@RequestBody SupplierRecord a){
+		
+		CResult x=s.RegisterSupplier(a);
 		return x;
 	}
 	

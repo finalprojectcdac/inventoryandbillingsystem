@@ -13,7 +13,7 @@ import inb.models.Inventory;
 
 
 @Repository
-public interface DaoInterface extends JpaRepository<Inventory, String> {
+public interface InventoryRepository extends JpaRepository<Inventory, String> {
 
 //	@Query("from inventory where balance < :msoc")
 //	public List<Inventory> f1(@Param("msoc") int quantity);
