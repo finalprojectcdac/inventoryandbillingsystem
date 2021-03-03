@@ -7,17 +7,19 @@ public class CResult {
 	private int status;
 	private Inventory content;
 	private String reason;
+	
 	public int getStatus() {
 		return status;
 	}
 	public void setStatus(int status) {
 		this.status = status;
 	}
-
-	
-	public Inventory getContent() { return content; } public void setContent(Inventory
-	content) { this.content = content; }
-	 
+	public Inventory getContent() {
+		return content;
+	}
+	public void setContent(Inventory content) {
+		this.content = content;
+	}
 	public String getReason() {
 		return reason;
 	}

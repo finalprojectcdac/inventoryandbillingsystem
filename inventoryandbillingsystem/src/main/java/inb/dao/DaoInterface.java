@@ -9,9 +9,6 @@ import org.springframework.stereotype.Repository;
 
 import inb.models.Inventory;
 
-
-
-
 @Repository
 public interface DaoInterface extends JpaRepository<Inventory, String> {
 
