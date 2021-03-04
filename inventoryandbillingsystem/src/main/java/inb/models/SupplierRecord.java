@@ -3,7 +3,7 @@ package inb.models;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
+//supllier record class ---sagar
 @Entity
 public class SupplierRecord {
 
