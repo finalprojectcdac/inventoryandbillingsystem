@@ -46,6 +46,9 @@ public class ServiceImplementation implements ServiceInterface {
 		return c1;
 		
 	}
+	
+	
+	//this is registersupplier by maahi
 	public CResult RegisterSupplier(SupplierRecord s) {//by sandipan
 		CResult c1 =new CResult(0, s, "failed due to user");
 		try {
