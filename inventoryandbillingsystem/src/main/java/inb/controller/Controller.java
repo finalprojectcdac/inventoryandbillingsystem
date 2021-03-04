@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import inb.models.CResult;
 import inb.models.Inventory;
+import inb.models.Invoices;
 import inb.models.SupplierRecord;
 import inb.service.ServiceInterface;
 
@@ -25,10 +26,10 @@ public class Controller
 		return "hello";
 	}
 	
-	@PutMapping("/add")
-	public CResult addItem(@RequestBody Inventory item){
+	@PutMapping("/addInvoice")
+	public CResult addItem(@RequestBody Invoices invoice){
 		
-		CResult x= s.addItem(item);
+		CResult x= s.addInvoices(invoice);
 		return x;
 	}
 	

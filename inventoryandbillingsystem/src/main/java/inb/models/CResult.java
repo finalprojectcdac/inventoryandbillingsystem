@@ -7,8 +7,17 @@ public class CResult {
 	private int status;
 	private Inventory content;
 	private SupplierRecord contentsupplier;
+	private Invoices invoice;
 	private String reason;
 	
+	
+	
+	public Invoices getInvoice() {
+		return invoice;
+	}
+	public void setInvoice(Invoices invoice) {
+		this.invoice = invoice;
+	}
 	public int getStatus() {
 		return status;
 	}
@@ -55,8 +64,12 @@ public class CResult {
 		super();
 		this.status = status;
 		this.reason = reason;
-	}	
+	}
+	public CResult(int status, Invoices invoice, String reason) {
+		super();
+		this.status = status;
+		this.invoice = invoice;
+		this.reason = reason;
+	}
 	
-	
-
 }
