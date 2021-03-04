@@ -66,6 +66,7 @@ public class ServiceImplementation implements ServiceInterface {
 	}
 
 	//created by vaibhav
+	// addItem 
 	public CResult addMultipleItems(List<Inventory> lsi) {
 		CResult c1 =new CResult(0, "failed due to user");
 		try {
