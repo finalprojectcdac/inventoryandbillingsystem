@@ -34,7 +34,7 @@ public class ServiceImplementation implements ServiceInterface {
 		
 		return c1;
 	}
-	
+	//to update the quantity
 	public CResult updateQuantity(Inventory item ) {//by Sandipan
 		CResult c1 =new CResult(0, item, "failed due to user");
 		if(ar.existsById(item.getItem_code()))
