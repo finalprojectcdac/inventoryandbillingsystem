@@ -19,7 +19,7 @@ public class ServiceImplementation implements ServiceInterface {
 	private InventoryRepository ar;
 	
 	@Autowired
-	private SupplierRecordRepository sr;
+	private SupplierRecordRepository sr;//this is the object for supplier recod repository 
 	//this function is for testing
 	public CResult addItem(Inventory item) {
 		CResult c1 =new CResult(0, item, "failed due to user");
