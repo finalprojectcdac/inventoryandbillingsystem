@@ -1,6 +1,6 @@
 package inb.service;
 
-import java.util.List;
+import java.util.*;
 import java.util.Optional;
 import java.util.function.Supplier;
 
@@ -16,6 +16,7 @@ import inb.models.CResult;
 import inb.models.Inventory;
 import inb.models.Invoices;
 import inb.models.SupplierRecord;
+//import x.service.ArrayList;
 
 
 @Service
@@ -129,9 +130,16 @@ public CResult getItem(String item_code) {
 @Override
 public CResult getSupplierDetails(String supplier_name) {
 	// TODO Auto-generated method stub
+	  List<SupplierRecord> l=new ArrayList<SupplierRecord>();
+	  CResult x=new CResult(0,l,"failed due to user");
+	  l.addAll(sr.f1(supplier_name));
+	  x.setReason("success");
+      x.setStatus(1);
+      x.setSupplierdtls(l);
+     //System.out.println(l);
+     
 	
-	
-	return null;
+	return x;
 }
 
 

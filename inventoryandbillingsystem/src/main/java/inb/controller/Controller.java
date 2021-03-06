@@ -47,13 +47,15 @@ public class Controller
 	@GetMapping("/getitemdetailsfrominventorytable")
 	public CResult getItemDetails(@RequestParam String item_code) {
 		//we have to make the function call here
-	return null;
+		CResult x=s.getItem(item_code);
+	return x;
 	}
 	
 	@GetMapping("/getsupplierdetailsfromSupplierRecord")
 	public CResult getSupplierDetails(@RequestParam String supplier_name) {
 		//we have to make the function call here
-	return null;
+		CResult x=s.getSupplierDetails(supplier_name);
+	return x;
 	}
 	
 	

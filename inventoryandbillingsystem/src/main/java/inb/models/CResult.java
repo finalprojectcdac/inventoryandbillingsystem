@@ -2,16 +2,26 @@
 
 package inb.models;
 
+import java.util.List;
+
 public class CResult {
 	
 	private int status;
 	private Inventory content;
 	private SupplierRecord contentsupplier;
+	private List<SupplierRecord> supplierdtls;
+	
 	private Invoices invoice;
 	private String reason;
 	
 	
 	
+	public CResult(int status, List<SupplierRecord> supplierdtls, String reason) {
+		super();
+		this.status = status;
+		this.supplierdtls = supplierdtls;
+		this.reason = reason;
+	}
 	public Invoices getInvoice() {
 		return invoice;
 	}
@@ -30,6 +40,13 @@ public class CResult {
 	}
 	public void setContent(Inventory content) {
 		this.content = content;
+	}
+	
+	public List<SupplierRecord> getSupplierdtls() {
+		return supplierdtls;
+	}
+	public void setSupplierdtls(List<SupplierRecord> supplierdtls) {
+		this.supplierdtls = supplierdtls;
 	}
 	
 	public CResult(int status, SupplierRecord contentsupplier, String reason) {
