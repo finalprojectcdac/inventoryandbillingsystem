@@ -7,10 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import inb.dao.InventoryRepository;
+import inb.dao.InvoiceRepository;
 import inb.dao.SupplierRecordRepository;
 import inb.models.CResult;
 import inb.models.Inventory;
+import inb.models.Invoices;
 import inb.models.SupplierRecord;
+
 
 @Service
 public class ServiceImplementation implements ServiceInterface {
@@ -21,19 +24,23 @@ public class ServiceImplementation implements ServiceInterface {
 	@Autowired
 	private SupplierRecordRepository sr;//this is the object for supplier recod repository 
 	//this function is for testing
-	public CResult addItem(Inventory item) {
-		CResult c1 =new CResult(0, item, "failed due to user");
-		try {
-			ar.save(item);
-			c1.setStatus(1);
-			c1.setReason("success");
-			System.out.println(item);
-		} catch (Exception e) {
-			System.out.println("if if fails we think why");
-		}
-		
-		return c1;
-	}
+
+
+	
+	@Autowired
+	private InvoiceRepository ir;
+
+	
+	/*
+	 * public CResult addItem(Inventory item) { CResult c1 =new CResult(0, item,
+	 * "failed due to user"); try { ar.save(item); c1.setStatus(1);
+	 * c1.setReason("success"); System.out.println(item); } catch (Exception e) {
+	 * System.out.println("if if fails we think why"); }
+	 * 
+	 * return c1; }
+	 */
+	
+	
 	//to update the quantity
 	public CResult updateQuantity(Inventory item ) {//by Sandipan
 		CResult c1 =new CResult(0, item, "failed due to user");
@@ -80,5 +87,20 @@ public class ServiceImplementation implements ServiceInterface {
 		}
 		return c1;
 	}
-
+// created by Shubham
+@Override
+public CResult addInvoices(Invoices invoice) {
+	// TODO Auto-generated method stub
+	CResult c1 =new CResult(0, invoice, "failed due to user");
+	try {
+		ir.save(invoice);
+		c1.setStatus(1);
+		c1.setReason("success");
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		System.out.println("if if fails we think why");
+	}
+	return c1;
+ }
 }
+
