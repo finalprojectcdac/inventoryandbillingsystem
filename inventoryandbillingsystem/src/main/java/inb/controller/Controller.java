@@ -1,8 +1,10 @@
 package inb.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,13 +15,32 @@ import inb.models.CResult;
 import inb.models.Inventory;
 import inb.models.Invoices;
 import inb.models.SupplierRecord;
+import inb.models.User;
 import inb.service.ServiceInterface;
 
+
+@CrossOrigin(origins="http://localhost:3000")
 @RestController
 public class Controller
 {
 	@Autowired
 	private ServiceInterface s;
+	
+	 @PutMapping("/test")
+	 public void test(@RequestBody ArrayList<User> u) {
+		 System.out.println(u);
+	 }
+	 @GetMapping("/abc") public ArrayList<User> f1() { 
+		 ArrayList<User> u= new ArrayList<User>();
+		 User x= new User("sandipan","56445866","kolkata");
+		 User y= new User("ram","56445866","kolkata");
+		 User z= new User("sam","56445866","kolkata");
+		 u.add(x);
+		 u.add(y);
+		 u.add(z);
+		 return u; 
+		 
+	 }
 	
 	/*
 	 * @GetMapping("/abc") public String f1() { return "hello"; }
