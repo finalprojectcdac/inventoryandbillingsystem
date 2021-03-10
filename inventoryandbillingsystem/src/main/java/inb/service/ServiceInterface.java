@@ -14,4 +14,7 @@ public interface ServiceInterface {
 	CResult RegisterSupplier(SupplierRecord s);
 	CResult updateQuantity(Inventory item );
 	CResult addInvoices(Invoices invoice);
+	
+	CResult getItem(String item_code);//by maahi
+	CResult getSupplierDetails(String supplier_name);//by maahi
 }
