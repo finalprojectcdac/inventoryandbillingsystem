@@ -1,10 +1,13 @@
 package inb.service;
 
-import java.util.List;
+import java.util.*;
+import java.util.Optional;
 import java.util.function.Supplier;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+
 
 import inb.dao.InventoryRepository;
 import inb.dao.InvoiceRepository;
@@ -13,6 +16,7 @@ import inb.models.CResult;
 import inb.models.Inventory;
 import inb.models.Invoices;
 import inb.models.SupplierRecord;
+//import x.service.ArrayList;
 
 
 @Service
@@ -102,5 +106,51 @@ public CResult addInvoices(Invoices invoice) {
 	}
 	return c1;
  }
+
+@Override
+public CResult getItem(String item_code) {
+	// TODO Auto-generated method stub
+	CResult c1 =new CResult(0, new Inventory(), "failed due to user");
+	Optional<Inventory> i = ar.findById(item_code);
+	if(i.isPresent())
+	{
+		Inventory x = i.get();
+		c1.setReason("success");
+		c1.setStatus(1);
+		c1.setContent(x);
+	}
+	else
+		System.out.println("did not get the object");	
+	
+	
+	return c1;
+}
+
+
+@Override
+public CResult getSupplierDetails(String supplier_name) {
+	// TODO Auto-generated method stub
+	  List<SupplierRecord> l=new ArrayList<SupplierRecord>();
+	  CResult x=new CResult(0,l,"failed due to user");
+	  l.addAll(sr.f1(supplier_name));
+	  x.setReason("success");
+      x.setStatus(1);
+      x.setSupplierdtls(l);
+     //System.out.println(l);
+     
+	
+	return x;
+}
+
+
+
+
+
+
+
+
+
+
+
 }
 
