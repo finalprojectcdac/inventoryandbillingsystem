@@ -79,5 +79,11 @@ public class Controller
 	return x;
 	}
 	
+	@GetMapping("/getRealTimeData")
+	public CResult getRealTimeData() {
+		CResult x = s.getRealTimeData();
+		return x;
+	}
+	
 	
 }
