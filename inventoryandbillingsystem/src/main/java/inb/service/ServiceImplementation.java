@@ -1,7 +1,6 @@
 package inb.service;
 
 import java.util.*;
-import java.util.Optional;
 import java.util.function.Supplier;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +14,7 @@ import inb.dao.SupplierRecordRepository;
 import inb.models.CResult;
 import inb.models.Inventory;
 import inb.models.Invoices;
+import inb.models.RealTimeData;
 import inb.models.SupplierRecord;
 //import x.service.ArrayList;
 
@@ -143,12 +143,26 @@ public CResult getSupplierDetails(String supplier_name) {
 }
 
 
-
-
-
-
-
-
+@Override
+public CResult getRealTimeData() {
+	RealTimeData rtd = new RealTimeData(0,0);
+	CResult x = new CResult(0, rtd, "failed due to user");
+	List<Inventory> l = new ArrayList<>();
+	l = ar.findAll();
+	int totalNoOfItems = 0;
+	float totalItemValue = 0;
+	for(int i = 0; i<l.size(); i++)
+	{
+		totalNoOfItems += l.get(i).getQuantity();
+		totalItemValue += l.get(i).getTotal_value();
+	}
+	rtd.setTotalNoOfItems(totalNoOfItems);
+	rtd.setTotalItemValue(totalItemValue);
+	x.setStatus(1);
+	x.setRtd(rtd);
+	x.setReason("success");
+	return x;
+}
 
 
 
