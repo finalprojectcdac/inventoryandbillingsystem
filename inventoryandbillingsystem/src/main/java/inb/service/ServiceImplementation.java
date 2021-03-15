@@ -130,16 +130,28 @@ public CResult getItem(String item_code) {
 @Override
 public CResult getSupplierDetails(String supplier_name) {
 	// TODO Auto-generated method stub
-	  List<SupplierRecord> l=new ArrayList<SupplierRecord>();
-	  CResult x=new CResult(0,l,"failed due to user");
-	  l.addAll(sr.f1(supplier_name));
-	  x.setReason("success");
-      x.setStatus(1);
-      x.setSupplierdtls(l);
-     //System.out.println(l);
-     
 	
-	return x;
+//	  List<SupplierRecord> l=new ArrayList<SupplierRecord>();
+//	  CResult x=new CResult(0,l,"failed due to user");
+//	  l.addAll(sr.f1(supplier_name));
+//	  x.setReason("success");
+//      x.setStatus(1);
+//      x.setSupplierdtls(l);
+//     //System.out.println(l);
+     
+	CResult c1 =new CResult(0, new SupplierRecord(), "failed due to user");
+	Optional<SupplierRecord> i = sr.findById(supplier_name);
+	if(i.isPresent())
+	{
+		SupplierRecord x = i.get();
+		c1.setReason("success");
+		c1.setStatus(1);
+		c1.setContentsupplier(x);
+	}
+	else
+		System.out.println("did not get the object");	
+	
+	return c1;
 }
 
 
