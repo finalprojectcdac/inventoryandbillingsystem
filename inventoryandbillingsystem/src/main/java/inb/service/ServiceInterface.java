@@ -17,4 +17,6 @@ public interface ServiceInterface {
 	
 	CResult getItem(String item_code);//by maahi
 	CResult getSupplierDetails(String supplier_name);//by maahi
+	
+	CResult getRealTimeData();//For real time data updation.
 }
