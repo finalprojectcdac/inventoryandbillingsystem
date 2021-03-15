@@ -1,7 +1,12 @@
 package inb.models;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Invoices
 {
+	@Id
 	private String invoice_no;
 	private String mobile_no;
 	private String customer_name;

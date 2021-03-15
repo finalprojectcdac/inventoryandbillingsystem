@@ -2,13 +2,40 @@
 
 package inb.models;
 
+import java.util.List;
+
 public class CResult {
 	
 	private int status;
 	private Inventory content;
 	private SupplierRecord contentsupplier;
+	private List<SupplierRecord> supplierdtls;
+	private RealTimeData rtd;
+	
+	private Invoices invoice;
 	private String reason;
 	
+	
+	
+	public CResult(int status, RealTimeData rtd, String reason) {
+		super();
+		this.status = status;
+		this.rtd = rtd;
+		this.reason = reason;
+	}
+	
+	public CResult(int status, List<SupplierRecord> supplierdtls, String reason) {
+		super();
+		this.status = status;
+		this.supplierdtls = supplierdtls;
+		this.reason = reason;
+	}
+	public Invoices getInvoice() {
+		return invoice;
+	}
+	public void setInvoice(Invoices invoice) {
+		this.invoice = invoice;
+	}
 	public int getStatus() {
 		return status;
 	}
@@ -21,6 +48,13 @@ public class CResult {
 	}
 	public void setContent(Inventory content) {
 		this.content = content;
+	}
+	
+	public List<SupplierRecord> getSupplierdtls() {
+		return supplierdtls;
+	}
+	public void setSupplierdtls(List<SupplierRecord> supplierdtls) {
+		this.supplierdtls = supplierdtls;
 	}
 	
 	public CResult(int status, SupplierRecord contentsupplier, String reason) {
@@ -42,6 +76,15 @@ public class CResult {
 	public void setContentsupplier(SupplierRecord contentsupplier) {
 		this.contentsupplier = contentsupplier;
 	}
+	
+	public RealTimeData getRtd() {
+		return rtd;
+	}
+
+	public void setRtd(RealTimeData rtd) {
+		this.rtd = rtd;
+	}
+
 	public CResult() {
 		
 	}
@@ -55,8 +98,12 @@ public class CResult {
 		super();
 		this.status = status;
 		this.reason = reason;
-	}	
+	}
+	public CResult(int status, Invoices invoice, String reason) {
+		super();
+		this.status = status;
+		this.invoice = invoice;
+		this.reason = reason;
+	}
 	
-	
-
 }
