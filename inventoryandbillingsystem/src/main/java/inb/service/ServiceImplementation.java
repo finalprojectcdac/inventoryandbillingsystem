@@ -139,18 +139,30 @@ public CResult getSupplierDetails(String supplier_name) {
 //      x.setSupplierdtls(l);
 //     //System.out.println(l);
      
-	CResult c1 =new CResult(0, new SupplierRecord(), "failed due to user");
-	Optional<SupplierRecord> i = sr.findById(supplier_name);
-	if(i.isPresent())
-	{
-		SupplierRecord x = i.get();
-		c1.setReason("success");
-		c1.setStatus(1);
-		c1.setContentsupplier(x);
-	}
-	else
-		System.out.println("did not get the object");	
+//	CResult c1 =new CResult(0, new SupplierRecord(), "failed due to user");
+//	Optional<SupplierRecord> i = sr.findById(supplier_name);
+//	if(i.isPresent())
+//	{
+//		SupplierRecord x = i.get();
+//		c1.setReason("success");
+//		c1.setStatus(1);
+//		c1.setContentsupplier(x);
+//	}
+//	else
+//		System.out.println("did not get the object");	
+//	
+//	return c1;
 	
+	CResult c1 = new CResult(0, new SupplierRecord(), "failed due to user");
+	SupplierRecord s = sr.f2(supplier_name);
+	if(s.getSupplier_name().isEmpty()) {
+		c1.setReason("Supplier not found");
+	}
+		else {
+			c1.setStatus(1);
+			c1.setContentsupplier(s);
+			c1.setReason("Supplier found");
+		}
 	return c1;
 }
 
