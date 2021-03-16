@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import inb.dao.InventoryRepository;
 import inb.dao.InvoiceRepository;
+import inb.dao.RetailPriceDataRepository;
 import inb.dao.SupplierRecordRepository;
 import inb.models.CResult;
 import inb.models.Inventory;
@@ -33,6 +34,9 @@ public class ServiceImplementation implements ServiceInterface {
 	
 	@Autowired
 	private InvoiceRepository ir;
+	
+	@Autowired
+	private RetailPriceDataRepository rr;
 
 	
 	/*
