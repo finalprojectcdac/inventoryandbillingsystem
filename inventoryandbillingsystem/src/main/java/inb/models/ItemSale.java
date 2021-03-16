@@ -1,7 +1,16 @@
 package inb.models;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class ItemSale {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int sno;
 	private String invoice_no;
 	private String item_code;
 	private int quantity_sold;

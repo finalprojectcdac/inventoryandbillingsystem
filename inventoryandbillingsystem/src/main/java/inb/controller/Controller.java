@@ -27,8 +27,8 @@ public class Controller
 	private ServiceInterface s;
 	
 	 @PutMapping("/test")
-	 public void test(@RequestBody ArrayList<User> u) {
-		 System.out.println(u);
+	 public void test() {
+		 s.insertIntoItemSale();
 	 }
 	 @GetMapping("/abc") public ArrayList<User> f1() { 
 		 ArrayList<User> u= new ArrayList<User>();

@@ -10,11 +10,13 @@ import org.springframework.stereotype.Service;
 
 import inb.dao.InventoryRepository;
 import inb.dao.InvoiceRepository;
+import inb.dao.ItemSaleRepository;
 import inb.dao.RetailPriceDataRepository;
 import inb.dao.SupplierRecordRepository;
 import inb.models.CResult;
 import inb.models.Inventory;
 import inb.models.Invoices;
+import inb.models.ItemSale;
 import inb.models.RealTimeData;
 import inb.models.SupplierRecord;
 //import x.service.ArrayList;
@@ -37,6 +39,9 @@ public class ServiceImplementation implements ServiceInterface {
 	
 	@Autowired
 	private RetailPriceDataRepository rr;
+	
+	@Autowired
+	private ItemSaleRepository isr;
 
 	
 	/*
@@ -192,6 +197,10 @@ public CResult getRealTimeData() {
 	return x;
 }
 
+public void insertIntoItemSale() {
+	ItemSale as = new ItemSale("8393", "kdfja", 5);
+	isr.save(as);
+}
 
 
 }
