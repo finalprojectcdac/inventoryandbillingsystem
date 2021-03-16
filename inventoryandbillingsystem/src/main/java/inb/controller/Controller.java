@@ -52,15 +52,16 @@ public class Controller
 	 */
 	
 	@PutMapping("/saveinventorypage") // created by vaibhav// final done
-	public CResult addAllItems(@RequestBody List<Inventory> lsi)
+	public CResult addAllItems(@RequestBody ArrayList<Inventory> lsi)
 	{
+		System.out.println("save inventory called");
 		CResult x = s.addMultipleItems(lsi);
 		return x;
 	}
 	
 	@PutMapping("/saveSupplierRecordFromInventorypage")// final done
 	public CResult addSupplier(@RequestBody SupplierRecord a){
-		
+		System.out.println("save supplier called");
 		CResult x=s.RegisterSupplier(a);
 		return x;
 	}
@@ -68,6 +69,7 @@ public class Controller
 	@GetMapping("/getitemdetailsfrominventorytable")
 	public CResult getItemDetails(@RequestParam String item_code) {
 		//we have to make the function call here
+		System.out.println(item_code);
 		CResult x=s.getItem(item_code);
 	return x;
 	}
@@ -75,6 +77,7 @@ public class Controller
 	@GetMapping("/getsupplierdetailsfromSupplierRecord")
 	public CResult getSupplierDetails(@RequestParam String supplier_name) {
 		//we have to make the function call here
+		System.out.println(supplier_name);
 		CResult x=s.getSupplierDetails(supplier_name);
 	return x;
 	}
