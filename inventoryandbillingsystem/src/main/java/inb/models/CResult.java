@@ -12,7 +12,7 @@ public class CResult {
 	private List<SupplierRecord> supplierdtls;
 	private RealTimeData rtd;
 	
-	private Invoices invoice;
+	private Invoices contantinvoice;
 	private String reason;
 	
 	
@@ -31,10 +31,10 @@ public class CResult {
 		this.reason = reason;
 	}
 	public Invoices getInvoice() {
-		return invoice;
+		return contantinvoice;
 	}
 	public void setInvoice(Invoices invoice) {
-		this.invoice = invoice;
+		this.contantinvoice = invoice;
 	}
 	public int getStatus() {
 		return status;
@@ -102,8 +102,13 @@ public class CResult {
 	public CResult(int status, Invoices invoice, String reason) {
 		super();
 		this.status = status;
-		this.invoice = invoice;
+		this.contantinvoice = invoice;
 		this.reason = reason;
+	}
+
+	public void setContentInvoices(Invoices content) {
+		// TODO Auto-generated method stub
+		this.contantinvoice =content;
 	}
 	
 }

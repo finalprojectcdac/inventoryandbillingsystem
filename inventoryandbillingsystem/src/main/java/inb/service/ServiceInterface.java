@@ -18,6 +18,10 @@ public interface ServiceInterface {
 	CResult getItem(String item_code);//by maahi
 	CResult getSupplierDetails(String supplier_name);//by maahi
 	
+	
+	CResult getCustomerDetails(String mobile_no);
+	
+	
 	CResult getRealTimeData();//For real time data updation.
 	void insertIntoItemSale();
 }

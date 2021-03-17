@@ -42,6 +42,8 @@ public class ServiceImplementation implements ServiceInterface {
 	
 	@Autowired
 	private ItemSaleRepository isr;
+	
+
 
 	
 	/*
@@ -197,9 +199,35 @@ public CResult getRealTimeData() {
 	return x;
 }
 
+
 public void insertIntoItemSale() {
 	ItemSale as = new ItemSale("8393", "kdfja", 5);
 	isr.save(as);
+}
+
+
+@Override
+public CResult getCustomerDetails(String mobile_no) {
+	// TODO Auto-generated method stub
+	Invoices invo = new Invoices("", "", "", 0, "");
+	CResult c1 =new CResult(0, invo, "failed due to user");
+	 invo = ir.searchByMobileNo(mobile_no);
+	if (invo.getCustomer_name().isEmpty())
+	{
+		c1.setReason("Supplier not found");
+	}
+	
+		else {
+		System.out.println("hello");
+		System.out.println(invo.getCustomer_name());
+		c1.setReason("success");
+		c1.setStatus(1);
+		c1.setContentInvoices(invo);
+	}
+	
+	
+	
+	return c1;
 }
 
 
