@@ -89,7 +89,7 @@ public class Controller
 		return x;
 	}
 	
-	@GetMapping("/getInvoicesdetailsfromInvoices") //postman testing by shubham sharma
+	@GetMapping("/getCustomerdetailsfromInvoices") //postman testing by shubham sharma
 	public CResult getCustomerDetails(@RequestParam String mobile_no) {
 		//we have to make the function call here
 		System.out.println(mobile_no);

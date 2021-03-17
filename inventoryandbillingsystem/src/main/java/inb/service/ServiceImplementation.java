@@ -232,10 +232,11 @@ Invoices invo = new Invoices("", "", "", 0, "");
 @Override
 public CResult insertInvoices(Invoices invoice) {
 	// TODO Auto-generated method stub
-	CResult c1 =new CResult(0, invoice, "failed due to user");
+	CResult c1 =new CResult(0, new Invoices(), "failed due to user");
 	try {
-	
+		ir.save(invoice);//changed by sandipan 
 		c1.setStatus(1);
+		c1.setContentinvoice(invoice);
 		c1.setReason("success");
 	} catch (Exception e) {
 		// TODO Auto-generated catch block
