@@ -13,7 +13,7 @@ import inb.models.Invoices;
 public interface InvoiceRepository extends JpaRepository<Invoices, String>{
 
 
-  @Query(nativeQuery = true, value = "select invoice_no, customer_name, email_id, invoice_value, mobile_no from invoices where mobile_no= :str")
+  @Query(nativeQuery = true, value = "select invoice_no, customer_name, email_id, invoice_value, mobile_no from invoices where mobile_no= :str limit 1")
    public Invoices searchByMobileNo(@Param("str") String mobile_no); 
 
 

@@ -100,8 +100,6 @@ public class Controller
 
 
 @PutMapping("/insertInvoicefromInvoices") //postman testing done by shubham
-
-
 public CResult insertInvoices(@RequestBody Invoices invoice)
 {
 	CResult x = s.insertInvoices(invoice);
