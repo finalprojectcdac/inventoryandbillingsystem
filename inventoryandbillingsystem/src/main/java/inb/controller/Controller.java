@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import inb.models.CResult;
 import inb.models.Inventory;
 import inb.models.Invoices;
+import inb.models.ItemSale;
 import inb.models.SupplierRecord;
 import inb.models.User;
 import inb.service.ServiceInterface;
@@ -87,6 +88,29 @@ public class Controller
 		CResult x = s.getRealTimeData();
 		return x;
 	}
+	
+	//controller function for the billing 
+	@GetMapping("/getSalesInvoicenumber")//done post man testing by sandipan
+	public String getSaleInvoiceNo() {
+		//s.insertIntoItemSale();
+		String x=s.getSalesInvoiceNofromDB();
+		return x;
+		
+	}
+	
+	@PutMapping("/ListItemsinserttoItemSale")//done post man testing by sandipan
+	public CResult insertListOfItems(@RequestBody List<ItemSale> list) {
+		
+		CResult y=s.insertListofItemsale(list);
+		return y;
+		
+	}
+	
+	
+	
+	
+	
+	
 	
 	
 }

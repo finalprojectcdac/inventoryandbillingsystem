@@ -197,9 +197,36 @@ public CResult getRealTimeData() {
 	return x;
 }
 
-public void insertIntoItemSale() {
+public void insertIntoItemSale() {//test
 	ItemSale as = new ItemSale("8393", "kdfja", 5);
 	isr.save(as);
+}
+
+
+@Override
+public String getSalesInvoiceNofromDB() {
+	// TODO Auto-generated method stub
+	int x=isr.f1();
+	x=x+1;
+	return String.valueOf(x);
+}
+
+
+@Override
+public CResult insertListofItemsale(List<ItemSale> list) {
+	// TODO Auto-generated method stub
+	CResult c1 =new CResult(0, "failed due to user");
+	try {
+		isr.saveAll(list);
+		c1.setStatus(1);
+		c1.setReason("success");
+	}
+	catch(Exception e)
+	{
+		e.printStackTrace();
+	}
+	return c1;
+	
 }
 
 
