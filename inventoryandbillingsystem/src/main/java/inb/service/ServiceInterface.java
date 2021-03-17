@@ -20,4 +20,6 @@ public interface ServiceInterface {
 	
 	CResult getRealTimeData();//For real time data updation.
 	void insertIntoItemSale();
+	CResult getCustomerDetails(String mobile_no);
+	CResult insertInvoices(Invoices invoice);
 }

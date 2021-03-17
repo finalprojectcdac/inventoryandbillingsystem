@@ -6,6 +6,7 @@ public class BillingObject {
 	private int quantity;
 	private float selling_price;
 	
+	
 	public BillingObject() {
 		super();
 		// TODO Auto-generated constructor stub
