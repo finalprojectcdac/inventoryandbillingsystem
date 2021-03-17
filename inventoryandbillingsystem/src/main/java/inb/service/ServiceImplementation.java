@@ -199,14 +199,19 @@ public CResult getRealTimeData() {
 	return x;
 }
 
+<<<<<<< HEAD
 
 public void insertIntoItemSale() {
+=======
+public void insertIntoItemSale() {//test
+>>>>>>> refs/heads/sandipan
 	ItemSale as = new ItemSale("8393", "kdfja", 5);
 	isr.save(as);
 }
 
 
 @Override
+<<<<<<< HEAD
 public CResult getCustomerDetails(String mobile_no) {
 	// TODO Auto-generated method stub
 	Invoices invo = new Invoices("", "", "", 0, "");
@@ -228,6 +233,31 @@ public CResult getCustomerDetails(String mobile_no) {
 	
 	
 	return c1;
+=======
+public String getSalesInvoiceNofromDB() {
+	// TODO Auto-generated method stub
+	int x=ir.f1();
+	
+	return String.valueOf(x);
+}
+
+
+@Override
+public CResult insertListofItemsale(List<ItemSale> list) {
+	// TODO Auto-generated method stub
+	CResult c1 =new CResult(0, "failed due to user");
+	try {
+		isr.saveAll(list);
+		c1.setStatus(1);
+		c1.setReason("success");
+	}
+	catch(Exception e)
+	{
+		e.printStackTrace();
+	}
+	return c1;
+	
+>>>>>>> refs/heads/sandipan
 }
 
 

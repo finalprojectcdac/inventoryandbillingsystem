@@ -5,6 +5,7 @@ import java.util.List;
 import inb.models.CResult;
 import inb.models.Inventory;
 import inb.models.Invoices;
+import inb.models.ItemSale;
 import inb.models.SupplierRecord;
 
 public interface ServiceInterface {
@@ -24,4 +25,7 @@ public interface ServiceInterface {
 	
 	CResult getRealTimeData();//For real time data updation.
 	void insertIntoItemSale();
+	
+	String getSalesInvoiceNofromDB();//for get sales invoice no
+	CResult insertListofItemsale(List<ItemSale> list);//for inserting list of item to item_sale table
 }
