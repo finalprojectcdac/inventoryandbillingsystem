@@ -10,11 +10,19 @@ public class CResult {
 	private Inventory content;
 	private SupplierRecord contentsupplier;
 	private List<SupplierRecord> supplierdtls;
+	private RealTimeData rtd;
 	
 	private Invoices invoice;
 	private String reason;
 	
 	
+	
+	public CResult(int status, RealTimeData rtd, String reason) {
+		super();
+		this.status = status;
+		this.rtd = rtd;
+		this.reason = reason;
+	}
 	
 	public CResult(int status, List<SupplierRecord> supplierdtls, String reason) {
 		super();
@@ -68,6 +76,15 @@ public class CResult {
 	public void setContentsupplier(SupplierRecord contentsupplier) {
 		this.contentsupplier = contentsupplier;
 	}
+	
+	public RealTimeData getRtd() {
+		return rtd;
+	}
+
+	public void setRtd(RealTimeData rtd) {
+		this.rtd = rtd;
+	}
+
 	public CResult() {
 		
 	}

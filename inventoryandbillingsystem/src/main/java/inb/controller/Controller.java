@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import inb.models.CResult;
 import inb.models.Inventory;
 import inb.models.Invoices;
+import inb.models.ItemSale;
 import inb.models.SupplierRecord;
 import inb.models.User;
 import inb.service.ServiceInterface;
@@ -27,8 +28,8 @@ public class Controller
 	private ServiceInterface s;
 	
 	 @PutMapping("/test")
-	 public void test(@RequestBody ArrayList<User> u) {
-		 System.out.println(u);
+	 public void test() {
+		 s.insertIntoItemSale();
 	 }
 	 @GetMapping("/abc") public ArrayList<User> f1() { 
 		 ArrayList<User> u= new ArrayList<User>();
@@ -52,15 +53,16 @@ public class Controller
 	 */
 	
 	@PutMapping("/saveinventorypage") // created by vaibhav// final done
-	public CResult addAllItems(@RequestBody List<Inventory> lsi)
+	public CResult addAllItems(@RequestBody ArrayList<Inventory> lsi)
 	{
+		System.out.println("save inventory called");
 		CResult x = s.addMultipleItems(lsi);
 		return x;
 	}
 	
 	@PutMapping("/saveSupplierRecordFromInventorypage")// final done
 	public CResult addSupplier(@RequestBody SupplierRecord a){
-		
+		System.out.println("save supplier called");
 		CResult x=s.RegisterSupplier(a);
 		return x;
 	}
@@ -68,6 +70,7 @@ public class Controller
 	@GetMapping("/getitemdetailsfrominventorytable")
 	public CResult getItemDetails(@RequestParam String item_code) {
 		//we have to make the function call here
+		System.out.println(item_code);
 		CResult x=s.getItem(item_code);
 	return x;
 	}
@@ -75,9 +78,39 @@ public class Controller
 	@GetMapping("/getsupplierdetailsfromSupplierRecord")
 	public CResult getSupplierDetails(@RequestParam String supplier_name) {
 		//we have to make the function call here
+		System.out.println(supplier_name);
 		CResult x=s.getSupplierDetails(supplier_name);
 	return x;
 	}
+	
+	@GetMapping("/getRealTimeData")
+	public CResult getRealTimeData() {
+		CResult x = s.getRealTimeData();
+		return x;
+	}
+	
+	//controller function for the billing 
+	@GetMapping("/getSalesInvoicenumber")//done post man testing by sandipan
+	public String getSaleInvoiceNo() {
+		//s.insertIntoItemSale();
+		String x=s.getSalesInvoiceNofromDB();
+		return x;
+		
+	}
+	
+	@PutMapping("/ListItemsinserttoItemSale")//done post man testing by sandipan
+	public CResult insertListOfItems(@RequestBody List<ItemSale> list) {
+		
+		CResult y=s.insertListofItemsale(list);
+		return y;
+		
+	}
+	
+	
+	
+	
+	
+	
 	
 	
 }

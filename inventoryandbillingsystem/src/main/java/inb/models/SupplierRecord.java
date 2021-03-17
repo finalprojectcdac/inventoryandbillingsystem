@@ -8,10 +8,9 @@ import javax.persistence.Table;
 public class SupplierRecord {
 
 	@Id
-	private String supplier_name;
-	
-	private String supplier_code;
 	private String supplier_invoice_number;
+	private String supplier_name;
+	private String supplier_code;
 	private float supplier_invoice_value;
 	
 	
