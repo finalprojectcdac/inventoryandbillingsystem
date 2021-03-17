@@ -13,11 +13,13 @@ import inb.dao.InvoiceRepository;
 import inb.dao.ItemSaleRepository;
 import inb.dao.RetailPriceDataRepository;
 import inb.dao.SupplierRecordRepository;
+import inb.models.BillingObject;
 import inb.models.CResult;
 import inb.models.Inventory;
 import inb.models.Invoices;
 import inb.models.ItemSale;
 import inb.models.RealTimeData;
+import inb.models.RetailPriceData;
 import inb.models.SupplierRecord;
 //import x.service.ArrayList;
 
@@ -164,7 +166,9 @@ public CResult getSupplierDetails(String supplier_name) {
 	
 	CResult c1 = new CResult(0, new SupplierRecord(), "failed due to user");
 	SupplierRecord s = sr.f2(supplier_name);
-	if(s.getSupplier_name().isEmpty()) {
+	
+	System.out.println(s);
+	if(s==null) {
 		c1.setReason("Supplier not found");
 	}
 		else {
@@ -202,6 +206,7 @@ public void insertIntoItemSale() {//test
 	isr.save(as);
 }
 
+//invoice details by shubham sharma
 
 @Override
 public String getSalesInvoiceNofromDB() {
@@ -230,5 +235,41 @@ public CResult insertListofItemsale(List<ItemSale> list) {
 }
 
 
-}
+public CResult getCustomerDetails(String mobile_no) {
 
+
+	CResult c1 =new CResult(0,new Invoices() , "failed due to user");
+	Invoices invo = ir.searchByMobileNo(mobile_no);
+	
+	if(invo == null)
+	{
+		c1.setReason("Supplier not found");
+	}
+	else {
+		System.out.println("heyy");	
+	
+	c1.setReason("Success");
+	c1.setStatus(1);
+	c1.setContentinvoice(invo);
+	}
+	
+	return c1;
+ }
+
+// insertInvoice function done by shubham
+@Override
+public CResult insertInvoices(Invoices invoice) {
+	// TODO Auto-generated method stub
+	CResult c1 =new CResult(0, new Invoices(), "failed due to user");
+	try {
+		ir.save(invoice);//changed by sandipan 
+		c1.setStatus(1);
+		c1.setContentinvoice(invoice);
+		c1.setReason("success");
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		System.out.println("if if fails we think why");
+	}
+	return c1;
+ }
+}

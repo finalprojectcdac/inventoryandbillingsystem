@@ -21,7 +21,8 @@ public interface ServiceInterface {
 	
 	CResult getRealTimeData();//For real time data updation.
 	void insertIntoItemSale();
-	
 	String getSalesInvoiceNofromDB();//for get sales invoice no
 	CResult insertListofItemsale(List<ItemSale> list);//for inserting list of item to item_sale table
+	CResult getCustomerDetails(String mobile_no);
+	CResult insertInvoices(Invoices invoice);
 }

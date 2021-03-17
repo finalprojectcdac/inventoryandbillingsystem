@@ -20,6 +20,7 @@ import inb.models.User;
 import inb.service.ServiceInterface;
 
 
+
 @CrossOrigin(origins="http://localhost:3000")
 @RestController
 public class Controller
@@ -106,11 +107,20 @@ public class Controller
 		
 	}
 	
+	@GetMapping("/getCustomerdetailsfromInvoices") //postman testing by shubham sharma
+	public CResult getCustomerDetails(@RequestParam String mobile_no) {
+		//we have to make the function call here
+		System.out.println(mobile_no);
+		CResult x=s.getCustomerDetails(mobile_no);
+	return x;
+	}
 	
-	
-	
-	
-	
-	
-	
+
+
+@PutMapping("/insertInvoicefromInvoices") //postman testing done by shubham
+public CResult insertInvoices(@RequestBody Invoices invoice)
+{
+	CResult x = s.insertInvoices(invoice);
+	return x;
+}
 }
