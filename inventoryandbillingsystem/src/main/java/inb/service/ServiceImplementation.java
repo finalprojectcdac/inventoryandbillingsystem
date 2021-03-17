@@ -206,8 +206,8 @@ public void insertIntoItemSale() {//test
 @Override
 public String getSalesInvoiceNofromDB() {
 	// TODO Auto-generated method stub
-	int x=isr.f1();
-	x=x+1;
+	int x=ir.f1();
+	
 	return String.valueOf(x);
 }
 
