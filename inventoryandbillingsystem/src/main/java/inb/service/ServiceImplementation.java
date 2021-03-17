@@ -166,7 +166,9 @@ public CResult getSupplierDetails(String supplier_name) {
 	
 	CResult c1 = new CResult(0, new SupplierRecord(), "failed due to user");
 	SupplierRecord s = sr.f2(supplier_name);
-	if(s.getSupplier_name().isEmpty()) {
+	
+	System.out.println(s);
+	if(s==null) {
 		c1.setReason("Supplier not found");
 	}
 		else {
@@ -209,21 +211,22 @@ public void insertIntoItemSale() {
 
 public CResult getCustomerDetails(String mobile_no) {
 	
-Invoices invo = new Invoices("", "", "", 0, "");	
 
-	CResult c1 =new CResult(0, invo, "failed due to user");
-	invo = ir.searchByMobileNo(mobile_no);
-	if(invo.getCustomer_name().isEmpty())
+
+	CResult c1 =new CResult(0,new Invoices() , "failed due to user");
+	Invoices invo = ir.searchByMobileNo(mobile_no);
+	
+	if(invo == null)
 	{
 		c1.setReason("Supplier not found");
 	}
-	else
+	else {
 		System.out.println("heyy");	
-	System.out.println(invo.getCustomer_name());
+	
 	c1.setReason("Success");
 	c1.setStatus(1);
 	c1.setContentinvoice(invo);
-
+	}
 	
 	return c1;
  }
