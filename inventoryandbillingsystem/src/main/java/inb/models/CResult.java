@@ -11,7 +11,42 @@ public class CResult {
 	private SupplierRecord contentsupplier;
 	private List<SupplierRecord> supplierdtls;
 	private RealTimeData rtd;
+	private RetailPriceData rpd;
+	private BillingObject bo;
 	
+<<<<<<< HEAD
+=======
+	public CResult(int status, BillingObject bo, String reason) {
+		super();
+		this.status = status;
+		this.bo = bo;
+		this.reason = reason;
+	}
+
+	public BillingObject getBo() {
+		return bo;
+	}
+
+	public void setBo(BillingObject bo) {
+		this.bo = bo;
+	}
+
+	public RetailPriceData getRpd() {
+		return rpd;
+	}
+
+	public void setRpd(RetailPriceData rpd) {
+		this.rpd = rpd;
+	}
+
+	public CResult(int status, RetailPriceData rpd, String reason) {
+		super();
+		this.status = status;
+		this.rpd = rpd;
+		this.reason = reason;
+	}
+	private Invoices invoice;
+>>>>>>> refs/heads/maahi
 	private String reason;
 	private Invoices contentinvoice;
 	

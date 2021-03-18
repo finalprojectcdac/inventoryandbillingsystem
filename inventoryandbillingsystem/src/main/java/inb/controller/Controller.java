@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -99,6 +100,7 @@ public class Controller
 		
 	}
 	
+
 	@PutMapping("/ListItemsinserttoItemSale")//done post man testing by sandipan
 	public CResult insertListOfItems(@RequestBody List<ItemSale> list) {
 		
@@ -123,4 +125,24 @@ public CResult insertInvoices(@RequestBody Invoices invoice)
 	CResult x = s.insertInvoices(invoice);
 	return x;
 }
+
+	//controller function for getting item details for sale
+	
+	@GetMapping("/getitemdetailsforsale") //maahi
+	public CResult getItemDetailsForSale(@RequestParam String item_code) {
+		System.out.println(item_code);
+		CResult c=s.getItemDetailsForSale(item_code);
+		
+		return c;
+	}
+	
+	
+	//controller function to update item quantity
+	@PostMapping("/updateitemquantity") //maahi
+	public CResult updateItemQuantity(@RequestParam int quantity, String item_code) {
+		
+		CResult c = s.updateItemQuantity(quantity,item_code);
+		return c;
+	}
+
 }
