@@ -11,12 +11,66 @@ public class CResult {
 	private SupplierRecord contentsupplier;
 	private List<SupplierRecord> supplierdtls;
 	private RealTimeData rtd;
+	private RetailPriceData rpd;
+	private BillingObject bo;
 	
+
 	private Invoices contantinvoice;
+	public CResult(int status, BillingObject bo, String reason) {
+		super();
+		this.status = status;
+		this.bo = bo;
+		this.reason = reason;
+	}
+
+	public BillingObject getBo() {
+		return bo;
+	}
+
+	public void setBo(BillingObject bo) {
+		this.bo = bo;
+	}
+
+	public RetailPriceData getRpd() {
+		return rpd;
+	}
+
+	public void setRpd(RetailPriceData rpd) {
+		this.rpd = rpd;
+	}
+
+	public CResult(int status, RetailPriceData rpd, String reason) {
+		super();
+		this.status = status;
+		this.rpd = rpd;
+		this.reason = reason;
+	}
+	private Invoices invoice;
+
 	private String reason;
+	private Invoices contentinvoice;
+	
+
 	
 	
 	
+
+
+	public Invoices getContentinvoice() {
+		return contentinvoice;
+	}
+
+	public void setContentinvoice(Invoices contentinvoice) {
+		this.contentinvoice = contentinvoice;
+	}
+
+	public CResult(int status, String reason, Invoices contentinvoice) {
+		super();
+		this.status = status;
+		this.reason = reason;
+		this.contentinvoice = contentinvoice;
+	}
+
 	public CResult(int status, RealTimeData rtd, String reason) {
 		super();
 		this.status = status;
@@ -36,6 +90,8 @@ public class CResult {
 	public void setInvoice(Invoices invoice) {
 		this.contantinvoice = invoice;
 	}
+
+
 	public int getStatus() {
 		return status;
 	}
@@ -102,7 +158,9 @@ public class CResult {
 	public CResult(int status, Invoices invoice, String reason) {
 		super();
 		this.status = status;
+
 		this.contantinvoice = invoice;
+
 		this.reason = reason;
 	}
 
@@ -112,3 +170,5 @@ public class CResult {
 	}
 	
 }
+
+
