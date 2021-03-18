@@ -14,8 +14,6 @@ public class CResult {
 	private RetailPriceData rpd;
 	private BillingObject bo;
 	
-<<<<<<< HEAD
-=======
 	public CResult(int status, BillingObject bo, String reason) {
 		super();
 		this.status = status;
@@ -46,7 +44,6 @@ public class CResult {
 		this.reason = reason;
 	}
 	private Invoices invoice;
->>>>>>> refs/heads/maahi
 	private String reason;
 	private Invoices contentinvoice;
 	
