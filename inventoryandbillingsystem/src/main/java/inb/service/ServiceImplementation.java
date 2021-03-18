@@ -199,19 +199,17 @@ public CResult getRealTimeData() {
 	return x;
 }
 
-<<<<<<< HEAD
 
-public void insertIntoItemSale() {
-=======
+
+
 public void insertIntoItemSale() {//test
->>>>>>> refs/heads/sandipan
 	ItemSale as = new ItemSale("8393", "kdfja", 5);
 	isr.save(as);
 }
 
 
 @Override
-<<<<<<< HEAD
+
 public CResult getCustomerDetails(String mobile_no) {
 	// TODO Auto-generated method stub
 	Invoices invo = new Invoices("", "", "", 0, "");
@@ -232,8 +230,7 @@ public CResult getCustomerDetails(String mobile_no) {
 	
 	
 	
-	return c1;
-=======
+	return c1;}
 public String getSalesInvoiceNofromDB() {
 	// TODO Auto-generated method stub
 	int x=ir.f1();
@@ -256,8 +253,7 @@ public CResult insertListofItemsale(List<ItemSale> list) {
 		e.printStackTrace();
 	}
 	return c1;
-	
->>>>>>> refs/heads/sandipan
+
 }
 
 
