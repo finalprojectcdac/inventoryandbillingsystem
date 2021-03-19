@@ -11,7 +11,7 @@ public class CResult {
 	private SupplierRecord contentsupplier;
 	private List<SupplierRecord> supplierdtls;
 	private RealTimeData rtd;
-	private RetailPriceData rpd;
+	private RetailPriceData contentRpd;
 	private BillingObject bo;
 	
 	public CResult(int status, BillingObject bo, String reason) {
@@ -29,19 +29,20 @@ public class CResult {
 		this.bo = bo;
 	}
 
-	public RetailPriceData getRpd() {
-		return rpd;
-	}
+	
 
-	public void setRpd(RetailPriceData rpd) {
-		this.rpd = rpd;
-	}
-
-	public CResult(int status, RetailPriceData rpd, String reason) {
+	public CResult(int status, RetailPriceData contentRpd, String reason) {
 		super();
 		this.status = status;
-		this.rpd = rpd;
+		this.contentRpd = contentRpd;
 		this.reason = reason;
+	}
+	public RetailPriceData getContentRpd() {
+		return contentRpd;
+	}
+
+	public void setContentRpd(RetailPriceData contentRpd) {
+		this.contentRpd = contentRpd;
 	}
 	private Invoices invoice;
 	private String reason;

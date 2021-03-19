@@ -6,6 +6,7 @@ import inb.models.CResult;
 import inb.models.Inventory;
 import inb.models.Invoices;
 import inb.models.ItemSale;
+import inb.models.RetailPriceData;
 import inb.models.SupplierRecord;
 
 public interface ServiceInterface {
@@ -29,4 +30,6 @@ public interface ServiceInterface {
 	//maahi
 	CResult getItemDetailsForSale(String item_code);
 	CResult updateItemQuantity(int quantity, String item_code);
+	//monitoring function by maahi
+	CResult setSellingPrice(RetailPriceData rpd);
 }

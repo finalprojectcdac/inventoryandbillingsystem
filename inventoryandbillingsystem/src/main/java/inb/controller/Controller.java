@@ -16,6 +16,7 @@ import inb.models.CResult;
 import inb.models.Inventory;
 import inb.models.Invoices;
 import inb.models.ItemSale;
+import inb.models.RetailPriceData;
 import inb.models.SupplierRecord;
 import inb.models.User;
 import inb.service.ServiceInterface;
@@ -152,5 +153,24 @@ public CResult insertInvoices(@RequestBody Invoices invoice)
 		CResult c = s.updateItemQuantity(quantity,item_code);
 		return c;
 	}
+	
+	//controller function to insert retailpricedata object by maahi
+	@PutMapping("/setSellingPrice")                //postman testing done
+	public CResult insertRetailPriceData(@RequestBody RetailPriceData rpd) { //maahi
+		
+		System.out.println("retail price inserted");
+		CResult c = s.setSellingPrice(rpd);
+		return c;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 }

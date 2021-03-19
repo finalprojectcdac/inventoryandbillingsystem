@@ -358,4 +358,26 @@ public CResult insertInvoices(Invoices invoice) {
 	}
 	return c1;
  }
+
+//function to add/insert retailpricedata object          by maahi
+@Override
+public CResult setSellingPrice(RetailPriceData rpd) {  //postman testing completed by maahi
+	// TODO Auto-generated method stub
+	CResult c = new CResult(0, new RetailPriceData(), "failed due to user");
+	try {
+		rr.save(rpd);
+		c.setStatus(1);
+		c.setReason("success");
+		c.setContentRpd(rpd);
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		System.out.println("if it fails think why");
+	}
+	return c;
+}
+
+
+
+
+
 }
