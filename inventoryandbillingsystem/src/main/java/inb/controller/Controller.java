@@ -84,6 +84,14 @@ public class Controller
 		CResult x=s.getSupplierDetails(supplier_name);
 	return x;
 	}
+	  ///
+	@GetMapping("/getinvoicesdetailsfromInvoices")
+	public CResult getInvoicesDetails(@RequestParam String mobile_no) {
+		//we have to make the function call here
+		System.out.println(mobile_no);
+		CResult x=s.getCustomerDetails(mobile_no);
+	return x;
+	}
 	
 	@GetMapping("/getRealTimeData")
 	public CResult getRealTimeData() {
@@ -152,5 +160,22 @@ public CResult insertInvoices(@RequestBody Invoices invoice)
 		CResult c = s.updateItemQuantity(quantity,item_code);
 		return c;
 	}
+	
+//================================================================================================
+
+@GetMapping("/getArrayOfBillingObject") //sagar
+public CResult getBillingObjDetails() {
+	System.out.println("we are trying to get billing obj list");
+	CResult cres=s.getArrayOfBillingObject();
+	return cres;
+	
+}
+	
+@GetMapping("/getCurrentStock") //
+public CResult getCurrentStock() {
+	System.out.println("we are trying to get billing obj list");
+	CResult cres=s.getCurrentStock();
+	return cres;
+}
 
 }

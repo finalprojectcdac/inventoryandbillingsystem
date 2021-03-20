@@ -13,6 +13,29 @@ public class CResult {
 	private RealTimeData rtd;
 	private RetailPriceData rpd;
 	private BillingObject bo;
+	private Invoices contantinvoice;
+	private String reason;
+	private Invoices contentinvoice;
+	private List<Inventory> invList;
+	
+	public CResult(  List<Inventory> invList,String reason, int status) {
+		super();
+		this.status = status;
+		this.reason = reason;
+		this.invList = invList;
+	}
+
+	public List<Inventory> getInvList() {
+		return invList;
+	}
+
+	public void setInvList(List<Inventory> invList) {
+		this.invList = invList;
+	}
+
+	//sagar
+	private List<BillingObject> billingObjList;
+
 	
 	public CResult(int status, BillingObject bo, String reason) {
 		super();
@@ -43,16 +66,31 @@ public class CResult {
 		this.rpd = rpd;
 		this.reason = reason;
 	}
-	private Invoices invoice;
-	private String reason;
-	private Invoices contentinvoice;
+	
 	
 
 	
 	
 	
 
+  //sagar
+	public CResult(int status, String reason, List<BillingObject> billingObjList) {
+		super();
+		this.status = status;
+		this.reason = reason;
+		this.billingObjList = billingObjList;
+	}
 
+	public List<BillingObject> getBillingObjList() {
+		return billingObjList;
+	}
+
+	public void setBillingObjList(List<BillingObject> billingObjList) {
+		this.billingObjList = billingObjList;
+	}
+
+////$
+	
 	public Invoices getContentinvoice() {
 		return contentinvoice;
 	}
@@ -81,6 +119,13 @@ public class CResult {
 		this.supplierdtls = supplierdtls;
 		this.reason = reason;
 	}
+	public Invoices getInvoice() {
+		return contantinvoice;
+	}
+	public void setInvoice(Invoices invoice) {
+		this.contantinvoice = invoice;
+	}
+
 
 	public int getStatus() {
 		return status;
@@ -148,8 +193,17 @@ public class CResult {
 	public CResult(int status, Invoices invoice, String reason) {
 		super();
 		this.status = status;
-		
+
+		this.contantinvoice = invoice;
+
 		this.reason = reason;
 	}
 
+	public void setContentInvoices(Invoices content) {
+		// TODO Auto-generated method stub
+		this.contantinvoice =content;
+	}
+	
 }
+
+
