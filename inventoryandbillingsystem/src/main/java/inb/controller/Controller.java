@@ -171,7 +171,7 @@ public CResult getBillingObjDetails() {
 	
 }
 	
-@GetMapping("/getCurrentStock") //
+@GetMapping("/getCurrentStock") //SHUBHAM
 public CResult getCurrentStock() {
 	System.out.println("we are trying to get billing obj list");
 	CResult cres=s.getCurrentStock();
