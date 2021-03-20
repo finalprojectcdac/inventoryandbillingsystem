@@ -5,8 +5,29 @@ public class BillingObject {
 	private String item_code, brand, item_name, unit_measurement;
 	private int quantity;
 	private float selling_price;
+	private float unit_price;//sagar
 	
 	
+	//sagar
+	public float getUnit_price() {
+		return unit_price;
+	}
+	public void setUnit_price(float unit_price) {
+		this.unit_price = unit_price;
+	}
+	
+	public BillingObject(String item_code, String brand, String item_name, String unit_measurement, int quantity,
+			float selling_price, float unit_price) {
+		super();
+		this.item_code = item_code;
+		this.brand = brand;
+		this.item_name = item_name;
+		this.unit_measurement = unit_measurement;
+		this.quantity = quantity;
+		this.selling_price = selling_price;
+		this.unit_price = unit_price;
+	}
+	//$
 	public BillingObject() {
 		super();
 		// TODO Auto-generated constructor stub

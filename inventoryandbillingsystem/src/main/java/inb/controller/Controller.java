@@ -160,5 +160,22 @@ public CResult insertInvoices(@RequestBody Invoices invoice)
 		CResult c = s.updateItemQuantity(quantity,item_code);
 		return c;
 	}
+	
+//================================================================================================
+
+@GetMapping("/getArrayOfBillingObject") //sagar
+public CResult getBillingObjDetails() {
+	System.out.println("we are trying to get billing obj list");
+	CResult cres=s.getArrayOfBillingObject();
+	return cres;
+	
+}
+	
+@GetMapping("/getCurrentStock") //
+public CResult getCurrentStock() {
+	System.out.println("we are trying to get billing obj list");
+	CResult cres=s.getCurrentStock();
+	return cres;
+}
 
 }

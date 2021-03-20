@@ -13,9 +13,30 @@ public class CResult {
 	private RealTimeData rtd;
 	private RetailPriceData rpd;
 	private BillingObject bo;
-	
-
 	private Invoices contantinvoice;
+	private String reason;
+	private Invoices contentinvoice;
+	private List<Inventory> invList;
+	
+	public CResult(  List<Inventory> invList,String reason, int status) {
+		super();
+		this.status = status;
+		this.reason = reason;
+		this.invList = invList;
+	}
+
+	public List<Inventory> getInvList() {
+		return invList;
+	}
+
+	public void setInvList(List<Inventory> invList) {
+		this.invList = invList;
+	}
+
+	//sagar
+	private List<BillingObject> billingObjList;
+
+	
 	public CResult(int status, BillingObject bo, String reason) {
 		super();
 		this.status = status;
@@ -45,17 +66,31 @@ public class CResult {
 		this.rpd = rpd;
 		this.reason = reason;
 	}
-	private Invoices invoice;
-
-	private String reason;
-	private Invoices contentinvoice;
+	
 	
 
 	
 	
 	
 
+  //sagar
+	public CResult(int status, String reason, List<BillingObject> billingObjList) {
+		super();
+		this.status = status;
+		this.reason = reason;
+		this.billingObjList = billingObjList;
+	}
 
+	public List<BillingObject> getBillingObjList() {
+		return billingObjList;
+	}
+
+	public void setBillingObjList(List<BillingObject> billingObjList) {
+		this.billingObjList = billingObjList;
+	}
+
+////$
+	
 	public Invoices getContentinvoice() {
 		return contentinvoice;
 	}

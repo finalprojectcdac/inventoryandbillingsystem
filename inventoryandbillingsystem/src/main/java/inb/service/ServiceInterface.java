@@ -20,7 +20,6 @@ public interface ServiceInterface {
 	
 	
 	
-	
 
 	CResult getRealTimeData();//For real time data updation.
 	void insertIntoItemSale();
@@ -29,9 +28,15 @@ public interface ServiceInterface {
 	CResult getCustomerDetails(String mobile_no);
 	CResult insertInvoices(Invoices invoice);
 	
-	
+	CResult getCurrentStock();
 	
 	//maahi
 	CResult getItemDetailsForSale(String item_code);
 	CResult updateItemQuantity(int quantity, String item_code);
+	
+	
+	
+	//sagar
+	CResult getArrayOfBillingObject();
+	
 }

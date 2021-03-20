@@ -70,7 +70,7 @@ public class ServiceImplementation implements ServiceInterface {
 		
 	}
 	
-	
+	//supplier
 	//this is registersupplier by maahi
 	public CResult RegisterSupplier(SupplierRecord s) {//by sandipan
 		CResult c1 =new CResult(0, s, "failed due to user");
@@ -89,7 +89,7 @@ public class ServiceImplementation implements ServiceInterface {
 	}
 
 	//created by vaibhav
-	// addItem 
+	// addItem Inventory
 	public CResult addMultipleItems(List<Inventory> lsi) {
 		CResult c1 =new CResult(0, "failed due to user");
 		try {
@@ -103,6 +103,8 @@ public class ServiceImplementation implements ServiceInterface {
 		}
 		return c1;
 	}
+
+//addInvoices Invoices
 // created by Shubham
 @Override
 public CResult addInvoices(Invoices invoice) {
@@ -119,6 +121,7 @@ public CResult addInvoices(Invoices invoice) {
 	return c1;
  }
 
+//getItem from Inventory
 @Override
 public CResult getItem(String item_code) {
 	// TODO Auto-generated method stub
@@ -133,12 +136,13 @@ public CResult getItem(String item_code) {
 	}
 	else
 		System.out.println("did not get the object");	
-	
-	
+		
 	return c1;
 }
 
 
+//get supplier based on name SUPPLIER
+//Vaibhav
 @Override
 public CResult getSupplierDetails(String supplier_name) {
 	// TODO Auto-generated method stub
@@ -181,6 +185,8 @@ public CResult getSupplierDetails(String supplier_name) {
 }
 
 
+//real Time data from Inventory
+//by Vaibhav
 @Override
 public CResult getRealTimeData() {
 	RealTimeData rtd = new RealTimeData(0,0);
@@ -210,13 +216,11 @@ public void insertIntoItemSale() {//test
 	isr.save(as);
 }
 
-//invoice details by shubham sharma
 
 
 
-	
-	
-	
+//invoice details INVOICES
+//by shubham sharma
 public String getSalesInvoiceNofromDB() {
 	// TODO Auto-generated method stub
 	int x=ir.f1();
@@ -330,8 +334,6 @@ public CResult insertListofItemsale(List<ItemSale> list) {
 
 
 public CResult getCustomerDetails(String mobile_no) {
-
-
 	CResult c1 =new CResult(0,new Invoices() , "failed due to user");
 	Invoices invo = ir.searchByMobileNo(mobile_no);
 	
@@ -346,7 +348,6 @@ public CResult getCustomerDetails(String mobile_no) {
 	c1.setStatus(1);
 	c1.setContentinvoice(invo);
 	}
-	
 	return c1;
  }
 
@@ -366,4 +367,79 @@ public CResult insertInvoices(Invoices invoice) {
 	}
 	return c1;
  }
+
+
+//
+//sagar
+@Override
+public CResult getArrayOfBillingObject() {
+	List<BillingObject> bolist = new ArrayList<>();
+	CResult crbo =new CResult(0, "nothig till now", bolist);
+	
+	//logical issues will seen here
+	//finding all the items in INVENTORY
+	List<Inventory> invList = new ArrayList<>();
+	invList = ar.findAll();
+	//finding all the items in INVENTORY
+	List<RetailPriceData> rpdList = new ArrayList<>();
+	rpdList = rr.findAll();
+	//counting lenght of both tables
+	int totalNoOfItemsInInventory=invList.size();
+	int totalNoOfItemsInReatailPriceData=rpdList.size();
+	System.out.println(totalNoOfItemsInInventory+" "+totalNoOfItemsInReatailPriceData);
+	if(totalNoOfItemsInInventory==totalNoOfItemsInReatailPriceData) {
+	for(int i=0;i<invList.size();i++) {
+		
+		//setting bolist elements
+		BillingObject bo = new BillingObject(invList.get(i).getItem_code(),  invList.get(i).getBrand(),
+				invList.get(i).getItem_name(),  invList.get(i).getUnit_measurement(), invList.get(i).getQuantity(),
+				0, invList.get(i).getUnit_price());
+		//feching selling price from REtail table.
+		for(int j=0;j<rpdList.size();j++)
+		   {
+			
+			if(invList.get(i).getItem_code().equalsIgnoreCase(rpdList.get(j).getItem_code()))
+			{   
+				bo.setSelling_price(rpdList.get(j).getSelling_price());
+				//bolist.add(bo);
+			}
+		   }
+		bolist.add(bo); 	
+	}
+	//now after finding both the list
+	crbo.setStatus(1);
+	crbo.setReason("sucess");
+	crbo.setBillingObjList(bolist);
+	}
+	else
+	crbo.setReason("no of obj miss matched");
+	return crbo;
+}
+
+@Override
+public CResult getCurrentStock() {
+	// CResult(status, reason, List<Inventory> inv)
+	List <Inventory> invlist = new ArrayList<>();
+	CResult crCS =new CResult(invlist, "", 0);
+	try {
+		invlist=ar.findAll();
+		crCS.setInvList(invlist);
+		crCS.setReason("success");
+		crCS.setStatus(1);
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	return crCS;
+}
+
+
+
+
+
+
+
+
+
+
 }
