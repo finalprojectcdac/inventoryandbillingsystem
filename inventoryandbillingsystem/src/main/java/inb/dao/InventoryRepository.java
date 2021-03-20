@@ -24,7 +24,7 @@ public interface InventoryRepository extends JpaRepository<Inventory, String> {
 	
 
 	@Modifying
-	@Query( nativeQuery= true,value="update inventory set quantity = :qty  where item_code = :itmcd")
+	@Query( nativeQuery= true,value="update inventory set quantity = :qty, total_value=unit_price* :qty  where item_code = :itmcd")
 	@Transactional
 	public int f1(@Param("qty") int quantity , @Param ("itmcd")  String item_code);
 	
