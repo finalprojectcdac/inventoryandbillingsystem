@@ -11,7 +11,8 @@ import inb.models.RetailPriceData;
 @Repository
 public interface RetailPriceDataRepository extends JpaRepository<RetailPriceData, String> {
 
-	
+	@Query(nativeQuery=true, value="select count(item_code) from retail_price_data where selling_price = -1")
+	public int f1();
 	
 	
 
