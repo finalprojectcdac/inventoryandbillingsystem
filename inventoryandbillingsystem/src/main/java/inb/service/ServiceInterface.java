@@ -32,4 +32,6 @@ public interface ServiceInterface {
 	CResult updateItemQuantity(int quantity, String item_code);
 	//monitoring function by maahi
 	CResult setSellingPrice(RetailPriceData rpd);
+	
+	CResult addNewItemToRetailPriceData(List<RetailPriceData> rpd);// by sagar
 }

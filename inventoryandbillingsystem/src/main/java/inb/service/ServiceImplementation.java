@@ -376,6 +376,23 @@ public CResult setSellingPrice(RetailPriceData rpd) {  //postman testing complet
 	return c;
 }
 
+//function to add list of RetailPriceData objects by sagar
+@Override
+public CResult addNewItemToRetailPriceData(List<RetailPriceData> rpd) { //by sagar
+	// TODO Auto-generated method stub
+	CResult c = new CResult(0, "nothing done");
+	try {
+		rr.saveAll(rpd);
+		c.setReason("success");
+		c.setStatus(1);
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	
+	return c;
+}
+
 
 
 

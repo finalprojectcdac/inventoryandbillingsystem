@@ -164,8 +164,13 @@ public CResult insertInvoices(@RequestBody Invoices invoice)
 	}
 	
 	
-	
-	
+	//controller funtion for getting list of RetailPriceData objects by sagar
+	@GetMapping("/addItemsToRetailPriceData")
+	public CResult addItemsToRetailPriceData(@RequestBody List<RetailPriceData> rpdList) {
+		System.out.println("working");
+		CResult c = s.addNewItemToRetailPriceData(rpdList);  //postman testing done by sagar
+		return c;
+	}
 	
 	
 	
