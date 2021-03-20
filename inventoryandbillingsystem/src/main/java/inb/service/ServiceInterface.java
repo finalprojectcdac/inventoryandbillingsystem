@@ -1,5 +1,6 @@
 package inb.service;
 
+import java.util.Date;
 import java.util.List;
 
 import inb.models.CResult;
@@ -17,7 +18,7 @@ public interface ServiceInterface {
 	CResult addInvoices(Invoices invoice);
 	CResult getItem(String item_code);//by maahi
 	CResult getSupplierDetails(String supplier_name);//by maahi
-	CResult getRealTimeData();//For real time data updation.
+	CResult getRealTimeData(Date tdate);//For real time data updation.
 	void insertIntoItemSale();
 	String getSalesInvoiceNofromDB();//for get sales invoice no
 	CResult insertListofItemsale(List<ItemSale> list);//for inserting list of item to item_sale table

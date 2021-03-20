@@ -180,7 +180,7 @@ public CResult getSupplierDetails(String supplier_name) {
 
 
 @Override
-public CResult getRealTimeData() {
+public CResult getRealTimeData(Date tdate) {
 	RealTimeData rtd = new RealTimeData(0,0);
 	CResult x = new CResult(0, rtd, "failed due to user");
 	List<Inventory> l = new ArrayList<>();
@@ -194,6 +194,12 @@ public CResult getRealTimeData() {
 	}
 	rtd.setTotalNoOfItems(totalNoOfItems);
 	rtd.setTotalItemValue(totalItemValue);
+	//added some code by sandipan--
+	float y=ir.searchByDate(tdate);
+	rtd.setTotalValueofInvoices(y);
+	int z= rr.f1();
+	rtd.setTotalNoOfItemsWithoutSp(z);
+	//---------------
 	x.setStatus(1);
 	x.setRtd(rtd);
 	x.setReason("success");

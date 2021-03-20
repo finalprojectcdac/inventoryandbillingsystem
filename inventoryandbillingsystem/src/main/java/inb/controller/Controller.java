@@ -1,6 +1,7 @@
 package inb.controller;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -86,8 +87,8 @@ public class Controller
 	}
 	
 	@GetMapping("/getRealTimeData")
-	public CResult getRealTimeData() {
-		CResult x = s.getRealTimeData();
+	public CResult getRealTimeData(@RequestParam Date tdate) {
+		CResult x = s.getRealTimeData(tdate);
 		return x;
 	}
 	
@@ -140,6 +141,7 @@ public CResult insertInvoices(@RequestBody Invoices invoice)
 	public CResult getItemDetailsForSale(@RequestParam String item_code) {
 		System.out.println(item_code);
 		CResult c=s.getItemDetailsForSale(item_code);
+		System.out.println(c);
 		
 		return c;
 	}

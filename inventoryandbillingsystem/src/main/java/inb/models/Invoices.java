@@ -1,5 +1,7 @@
 package inb.models;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -8,13 +10,25 @@ public class Invoices
 {
 	@Id
 	private String invoice_no;
+	
 	private String mobile_no;
 	private String customer_name;
 	private float invoice_value;
 	private String email_id;
+	private Date billing_date;//date added 
 	public Invoices() {
 		super();
 		// TODO Auto-generated constructor stub
+	}
+	public Invoices(String invoice_no, String mobile_no, String customer_name, float invoice_value, String email_id,
+			Date dt) {
+		super();
+		this.invoice_no = invoice_no;
+		this.mobile_no = mobile_no;
+		this.customer_name = customer_name;
+		this.invoice_value = invoice_value;
+		this.email_id = email_id;
+		this.billing_date = dt;
 	}
 	public Invoices(String invoice_no, String mobile_no, String customer_name, float invoice_value, String email_id) {
 		super();
@@ -58,6 +72,12 @@ public class Invoices
 	public String toString() {
 		return "Invoices [invoice_no=" + invoice_no + ", mobile_no=" + mobile_no + ", customer_name=" + customer_name
 				+ ", invoice_value=" + invoice_value + ", email_id=" + email_id + "]";
+	}
+	public Date getDt() {
+		return billing_date;
+	}
+	public void setDt(Date dt) {
+		this.billing_date = dt;
 	}
 	
 	
