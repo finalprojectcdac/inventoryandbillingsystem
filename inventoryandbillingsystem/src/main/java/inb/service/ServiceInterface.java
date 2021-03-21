@@ -31,7 +31,8 @@ public interface ServiceInterface {
 	
 	//maahi
 	CResult getItemDetailsForSale(String item_code);
-	CResult updateItemQuantity(int quantity, String item_code);
+	//CResult updateItemQuantity(int quantity, String item_code);
+	CResult updateItemQuantity(List<Inventory> updateQuantityList);
 
 	
 	

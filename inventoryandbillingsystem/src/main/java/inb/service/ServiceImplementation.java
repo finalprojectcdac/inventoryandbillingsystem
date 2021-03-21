@@ -297,26 +297,27 @@ public CResult getItemDetailsForSale(String item_code) { //by maahi
 //this function will reduce the mentioned quantity from total quantity
 //present in store for the particular item_code
 //by maahi
-@Override
-public CResult updateItemQuantity( int quantity, String item_code) {  //maahi
-	// TODO Auto-generated method stub
-	CResult c1 =new CResult(0, new Inventory(), "failed due to user"); //postman testing completed
-	 ar.f1( quantity,item_code);
-	Optional<Inventory> i = ar.findById(item_code);
-	if(i.isPresent())
-		{
-			Inventory x = i.get();
-			
-			c1.setReason("success");
-			c1.setStatus(1);
-			//c1.setContent(null);
-		}
-		else
-			System.out.println("did not get the object");
-	
-	
-	return c1;
-}
+//@Override
+//public CResult updateItemQuantity( int quantity, String item_code) {  //maahi
+//	// TODO Auto-generated method stub
+//	CResult c1 =new CResult(0, new Inventory(), "failed due to user"); //postman testing completed
+//	 ar.f1( quantity,item_code);
+//	Optional<Inventory> i = ar.findById(item_code);
+//	if(i.isPresent())
+//		{
+//			Inventory x = i.get();
+//			
+//			c1.setReason("success");
+//			c1.setStatus(1);
+//			//c1.setContent(null);
+//		}
+//		else
+//			System.out.println("did not get the object");
+//	
+//	
+//	return c1;
+//}
+
 
 
 
@@ -479,6 +480,32 @@ public CResult addNewItemToRetailPriceData(List<RetailPriceData> rpd) { //by sag
 	}
 
 	return c;
+}
+
+@Override
+public CResult updateItemQuantity(List<Inventory> updateQuantityList) {
+	CResult c1 =new CResult(0, "nothing done");
+	int count=0;
+	int sucess=0;
+	for(int i=0;i<updateQuantityList.size();i++)
+	{
+		sucess=ar.f1(updateQuantityList.get(i).getQuantity(),updateQuantityList.get(i).getItem_code());
+	   count+=sucess;
+	}
+	
+	if(count==updateQuantityList.size())
+	{
+		c1.setReason("success");
+		c1.setStatus(1);
+		System.out.println(count);
+	}
+	else
+	{
+		c1.setReason("failed to update: "+  (updateQuantityList.size()-count));
+		c1.setStatus(-1);
+	}
+	
+	return c1;
 }
 
 

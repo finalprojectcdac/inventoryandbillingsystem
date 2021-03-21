@@ -156,14 +156,17 @@ public CResult insertInvoices(@RequestBody Invoices invoice)
 		return c;
 	}
 	
-	
 	//controller function to update item quantity
-	@PostMapping("/updateitemquantity") //maahi
-	public CResult updateItemQuantity(@RequestParam int quantity, String item_code) {
-		CResult c = s.updateItemQuantity(quantity,item_code);
+//	@PostMapping("/updateitemquantity") //maahi
+//	public CResult updateItemQuantity(@RequestParam int quantity, String item_code) {
+//		CResult c = s.updateItemQuantity(quantity,item_code);
+//		return c;
+//	}
+	@PutMapping("/updateitemquantity") //maahi
+	public CResult updateItemQuantity(@RequestBody List <Inventory> updateQuantityList) {
+		CResult c = s.updateItemQuantity(updateQuantityList);
 		return c;
 	}
-	
 //================================================================================================
 
 @GetMapping("/getArrayOfBillingObject") //sagar
