@@ -92,6 +92,7 @@ public class ServiceImplementation implements ServiceInterface {
 	// addItem Inventory
 	public CResult addMultipleItems(List<Inventory> lsi) {
 		CResult c1 =new CResult(0, "failed due to user");
+		System.out.println(lsi);
 		try {
 			ar.saveAll(lsi);
 			c1.setStatus(1);
@@ -188,10 +189,12 @@ public CResult getSupplierDetails(String supplier_name) {
 //real Time data from Inventory
 //by Vaibhav
 @Override
-public CResult getRealTimeData(Date tdate) {
-	RealTimeData rtd = new RealTimeData(0,0);
+public CResult getRealTimeData() {
+	RealTimeData rtd = new RealTimeData();
 	CResult x = new CResult(0, rtd, "failed due to user");
 	List<Inventory> l = new ArrayList<>();
+	String totalSales = ir.todaysSale();
+	int noOfItemsWithoutSp = rr.f1();
 	l = ar.findAll();
 	int totalNoOfItems = 0;
 	float totalItemValue = 0;
@@ -202,12 +205,8 @@ public CResult getRealTimeData(Date tdate) {
 	}
 	rtd.setTotalNoOfItems(totalNoOfItems);
 	rtd.setTotalItemValue(totalItemValue);
-	//added some code by sandipan--
-	float y=ir.searchByDate(tdate);
-	rtd.setTotalValueofInvoices(y);
-	int z= rr.f1();
-	rtd.setTotalNoOfItemsWithoutSp(z);
-	//---------------
+	rtd.setTotalValueofInvoices(totalSales);
+	rtd.setTotalNoOfItemsWithoutSp(noOfItemsWithoutSp);
 	x.setStatus(1);
 	x.setRtd(rtd);
 	x.setReason("success");

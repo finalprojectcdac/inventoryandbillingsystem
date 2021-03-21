@@ -95,8 +95,8 @@ public class Controller
 	}
 	
 	@GetMapping("/getRealTimeData")
-	public CResult getRealTimeData(@RequestParam Date tdate) {
-		CResult x = s.getRealTimeData(tdate);
+	public CResult getRealTimeData() {
+		CResult x = s.getRealTimeData();
 		return x;
 	}
 	

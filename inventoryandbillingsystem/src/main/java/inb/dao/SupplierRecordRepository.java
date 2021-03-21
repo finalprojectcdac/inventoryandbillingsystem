@@ -16,9 +16,7 @@ public interface SupplierRecordRepository extends JpaRepository<SupplierRecord, 
 	@Query("from SupplierRecord where supplier_name like :str%")
 	public List<SupplierRecord> f1(@Param("str") String supplier_name);
 
-	@Query(nativeQuery=true, value="select supplier_name,supplier_code,supplier_invoice_value,supplier_invoice_number from supplier_record where supplier_name= :str limit 1")
+	@Query(nativeQuery=true, value="select supplier_name,supplier_code,supplier_invoice_value,supplier_invoice_number,purchase_date from supplier_record where supplier_name= :str limit 1")
 	public SupplierRecord f2(@Param("str") String supplier_name);
-	
-	
 }
 

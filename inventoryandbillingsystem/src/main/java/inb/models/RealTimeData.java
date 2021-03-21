@@ -4,20 +4,14 @@ public class RealTimeData {
 
 	private int totalNoOfItems;
 	private float totalItemValue;
-	private float totalValueofInvoices;//added this variable
+	private String totalValueofInvoices;//added this variable
 	private int   totalNoOfItemsWithoutSp;//added this variable
 	
 	public RealTimeData() {
-	}
-
-	public RealTimeData(int totalNoOfItems, float totalItemValue) {
 		super();
-		this.totalNoOfItems = totalNoOfItems;
-		this.totalItemValue = totalItemValue;
 	}
 	
-	
-	public RealTimeData(int totalNoOfItems, float totalItemValue, float totalValueofInvoices,
+	public RealTimeData(int totalNoOfItems, float totalItemValue, String totalValueofInvoices,
 			int totalNoOfItemsWithoutSp) {
 		super();
 		this.totalNoOfItems = totalNoOfItems;
@@ -27,12 +21,12 @@ public class RealTimeData {
 	}
 	
 	
-	public float getTotalValueofInvoices() {
+	public String getTotalValueofInvoices() {
 		return totalValueofInvoices;
 	}
 
-	public void setTotalValueofInvoices(float totalValueofInvoices) {
-		this.totalValueofInvoices = totalValueofInvoices;
+	public void setTotalValueofInvoices(String totalSales) {
+		this.totalValueofInvoices = totalSales;
 	}
 
 	public int getTotalNoOfItemsWithoutSp() {
