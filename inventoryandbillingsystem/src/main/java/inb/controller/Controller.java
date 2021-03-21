@@ -16,6 +16,7 @@ import inb.models.CResult;
 import inb.models.Inventory;
 import inb.models.Invoices;
 import inb.models.ItemSale;
+import inb.models.RetailPriceData;
 import inb.models.SupplierRecord;
 import inb.models.User;
 import inb.service.ServiceInterface;
@@ -31,7 +32,8 @@ public class Controller
 	
 	 @PutMapping("/test")
 	 public void test() {
-		 s.insertIntoItemSale();
+		 System.out.println("heloooo");
+		// s.insertIntoItemSale();
 	 }
 	 @GetMapping("/abc") public ArrayList<User> f1() { 
 		 ArrayList<User> u= new ArrayList<User>();
@@ -141,14 +143,14 @@ public CResult insertInvoices(@RequestBody Invoices invoice)
 	CResult x = s.insertInvoices(invoice);
 	return x;
 }
+//==========================================================billing===================
 
-	//controller function for getting item details for sale
-	
+
+    //controller function for getting item details for sale	
 	@GetMapping("/getitemdetailsforsale") //maahi
 	public CResult getItemDetailsForSale(@RequestParam String item_code) {
 		System.out.println(item_code);
-		CResult c=s.getItemDetailsForSale(item_code);
-		
+		CResult c=s.getItemDetailsForSale(item_code);	
 		return c;
 	}
 	
@@ -156,7 +158,6 @@ public CResult insertInvoices(@RequestBody Invoices invoice)
 	//controller function to update item quantity
 	@PostMapping("/updateitemquantity") //maahi
 	public CResult updateItemQuantity(@RequestParam int quantity, String item_code) {
-		
 		CResult c = s.updateItemQuantity(quantity,item_code);
 		return c;
 	}
@@ -177,5 +178,23 @@ public CResult getCurrentStock() {
 	CResult cres=s.getCurrentStock();
 	return cres;
 }
+
+//controller function to insert retailpricedata object by maahi
+	@PutMapping("/setSellingPrice")                //postman testing done
+	public CResult insertRetailPriceData(@RequestBody RetailPriceData rpd) { //maahi
+		
+		System.out.println("retail price inserted");
+		CResult c = s.setSellingPrice(rpd);
+		return c;
+	}
+	
+//controller funtion for getting list of RetailPriceData objects by sagar
+	@PutMapping("/addItemsToRetailPriceData")
+	public CResult addItemsToRetailPriceData(@RequestBody List<RetailPriceData> rpdList) {
+		System.out.println("working");
+		CResult c = s.addNewItemToRetailPriceData(rpdList);  //postman testing done by sagar
+		return c;
+	}
+
 
 }

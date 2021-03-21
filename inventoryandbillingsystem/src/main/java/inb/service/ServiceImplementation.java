@@ -369,6 +369,7 @@ public CResult insertInvoices(Invoices invoice) {
  }
 
 
+
 //
 //sagar
 @Override
@@ -436,6 +437,44 @@ public CResult getCurrentStock() {
 
 
 
+
+//function to add/insert retailpricedata object          by maahi
+@Override
+public CResult setSellingPrice(RetailPriceData rpd) {  //postman testing completed by maahi
+	// TODO Auto-generated method stub
+	CResult c = new CResult(0, new RetailPriceData(), "failed due to user");
+	try {
+		rr.save(rpd);
+		c.setStatus(1);
+		c.setReason("success");
+		c.setContentRpd(rpd);
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		System.out.println("if it fails think why");
+	}
+	return c;
+}
+
+//function to add list of RetailPriceData objects by sagar
+@Override
+public CResult addNewItemToRetailPriceData(List<RetailPriceData> rpd) { //by sagar
+	// TODO Auto-generated method stub
+	
+	//new task:: to check my list conatain 1 : if yes then dont updtae
+	//if conatin -1 then set -1
+	//do it using .save
+	CResult c = new CResult(0, "nothing done");
+	for(int i=0;i<rpd.size();i++) {
+		float selling_price=rpd.get(i).getSelling_price();
+		if(selling_price==-1) {
+			rr.save(rpd.get(i));
+			c.setStatus(1);
+			c.setReason("sucess");
+		}
+	}
+
+	return c;
+}
 
 
 
