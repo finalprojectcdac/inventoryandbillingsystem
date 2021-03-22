@@ -281,8 +281,6 @@ public CResult getItemDetailsForSale(String item_code) { //by maahi
 		c1.setReason(" only Retail data found");
 		c1.setStatus(3);
 	}
-	
-	
 		else {
 			c1.setStatus(-1);
 			c1.setReason(" no item found");
@@ -357,7 +355,7 @@ public CResult getCustomerDetails(String mobile_no) {
 	return c1;
  }
 
-// insertInvoice function done by shubham
+//insertInvoice function done by shubham
 @Override
 public CResult insertInvoices(Invoices invoice) {
 	// TODO Auto-generated method stub
