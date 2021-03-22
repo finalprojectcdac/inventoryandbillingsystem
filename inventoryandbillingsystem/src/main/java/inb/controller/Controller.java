@@ -1,18 +1,17 @@
 package inb.controller;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import inb.models.BillingObject;
 import inb.models.CResult;
 import inb.models.Inventory;
 import inb.models.Invoices;
@@ -199,6 +198,15 @@ public CResult getCurrentStock() {
 		System.out.println("working");
 		CResult c = s.addNewItemToRetailPriceData(rpdList);  //postman testing done by sagar
 		return c;
+	}
+	
+	//controller function for updating all the details of inventory including the selling price in the retail_price_data
+	@PutMapping("updateInventoryAndSellingPrice")
+	public CResult updateInventoryAndSellingPriceData(@RequestBody BillingObject bo) {
+	//using billing object for updating as it has all the fields which are supposed to be updated.
+	System.out.println(bo);
+	CResult c = s.updateInventoryAndSellingPriceData(bo);
+	return c;
 	}
 
 

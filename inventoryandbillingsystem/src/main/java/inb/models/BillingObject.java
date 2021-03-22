@@ -2,7 +2,7 @@ package inb.models;
 
 public class BillingObject {
 	
-	private String item_code, brand, item_name, unit_measurement;
+	private String item_code, brand, item_name, unit_measurement, item_category;
 	private int quantity;
 	private float selling_price;
 	private float unit_price;//sagar
@@ -16,6 +16,26 @@ public class BillingObject {
 		this.unit_price = unit_price;
 	}
 	
+	
+	
+	public String getItem_category() {
+		return item_category;
+	}
+	public void setItem_category(String item_category) {
+		this.item_category = item_category;
+	}
+	public BillingObject(String item_code, String brand, String item_name, String unit_measurement,
+			String item_category, int quantity, float selling_price, float unit_price) {
+		super();
+		this.item_code = item_code;
+		this.brand = brand;
+		this.item_name = item_name;
+		this.unit_measurement = unit_measurement;
+		this.item_category = item_category;
+		this.quantity = quantity;
+		this.selling_price = selling_price;
+		this.unit_price = unit_price;
+	}
 	public BillingObject(String item_code, String brand, String item_name, String unit_measurement, int quantity,
 			float selling_price, float unit_price) {
 		super();
