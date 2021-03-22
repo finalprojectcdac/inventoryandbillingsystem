@@ -1,8 +1,7 @@
 package inb.service;
-
-import java.util.Date;
 import java.util.List;
 
+import inb.models.BillingObject;
 import inb.models.CResult;
 import inb.models.Inventory;
 import inb.models.Invoices;
@@ -44,5 +43,6 @@ public interface ServiceInterface {
 	CResult setSellingPrice(RetailPriceData rpd);
 	
 	CResult addNewItemToRetailPriceData(List<RetailPriceData> rpd);// by sagar
+	CResult updateInventoryAndSellingPriceData(BillingObject bo);
 
 }

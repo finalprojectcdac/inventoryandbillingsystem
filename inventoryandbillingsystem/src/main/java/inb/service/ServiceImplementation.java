@@ -1,7 +1,6 @@
 package inb.service;
 
 import java.util.*;
-import java.util.function.Supplier;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -501,6 +500,30 @@ public CResult updateItemQuantity(List<Inventory> updateQuantityList) {
 	{
 		c1.setReason("failed to update: "+  (updateQuantityList.size()-count));
 		c1.setStatus(-1);
+	}
+	
+	return c1;
+}
+
+@Override
+public CResult updateInventoryAndSellingPriceData(BillingObject bo) {
+	CResult c1 = new CResult(0, "Failed");
+	Optional<Inventory> i = ar.findById(bo.getItem_code());
+	if(i.get().getItem_code() == bo.getItem_code()) {
+	Inventory inv = i.get();
+	inv.setItem_code(bo.getItem_code());
+	inv.setBrand(bo.getBrand());
+	inv.setItem_category(bo.getItem_category());
+	inv.setItem_name(bo.getItem_name());
+	inv.setQuantity(bo.getQuantity());
+	inv.setUnit_price(bo.getUnit_price());
+	inv.setUnit_measurement(bo.getUnit_measurement());
+	inv.setTotal_value(inv.getUnit_price()*inv.getQuantity());
+	ar.save(inv);
+	RetailPriceData rpd = new RetailPriceData(bo.getItem_code(), bo.getSelling_price());
+	rr.save(rpd);
+	c1.setStatus(1);
+	c1.setReason("Success");
 	}
 	
 	return c1;
