@@ -208,6 +208,17 @@ public CResult getCurrentStock() {
 	CResult c = s.updateInventoryAndSellingPriceData(bo);
 	return c;
 	}
+	
+	@GetMapping("getPurchaseReport")
+	public CResult getPruchaseReport(@RequestParam String startDate, @RequestParam String endDate) {
+		CResult c1 = s.getPurchaseReport(startDate, endDate);
+		return c1;
+	}
 
+	@GetMapping("getSalesReport")
+	public CResult getSalesReport(@RequestParam String startDate, @RequestParam String endDate) {
+		CResult c1 = s.getSalesReport(startDate, endDate);
+		return c1;
+	}
 
 }

@@ -44,5 +44,7 @@ public interface ServiceInterface {
 	
 	CResult addNewItemToRetailPriceData(List<RetailPriceData> rpd);// by sagar
 	CResult updateInventoryAndSellingPriceData(BillingObject bo);
+	CResult getPurchaseReport(String startDate, String endDate);
+	CResult getSalesReport(String startDate, String endDate);
 
 }

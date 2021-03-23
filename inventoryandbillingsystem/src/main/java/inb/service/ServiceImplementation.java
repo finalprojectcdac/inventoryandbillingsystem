@@ -531,6 +531,36 @@ public CResult updateInventoryAndSellingPriceData(BillingObject bo) {
 	return c1;
 }
 
+@Override
+public CResult getPurchaseReport(String startDate, String endDate) {
+	CResult c1 = new CResult(0, "Failed");
+	List<SupplierRecord> li = sr.getPurhcaseReport(startDate, endDate);
+	if(li.isEmpty()) {
+		c1.setStatus(-1);
+		c1.setReason("No data found");
+	} else {
+		c1.setStatus(1);
+		c1.setReason("Success");
+		c1.setSupplierdtls(li);
+	}
+	return c1;
+}
+
+@Override
+public CResult getSalesReport(String startDate, String endDate) {
+	CResult c1 = new CResult(0, "Failed");
+	List<Invoices> li = ir.getSalesReport(startDate, endDate);
+	if(li.isEmpty()) {
+		c1.setStatus(-1);
+		c1.setReason("No data found");
+	} else {
+		c1.setStatus(1);
+		c1.setReason("Success");
+		c1.setInvoiceList(li);
+	}
+	return c1;
+}
+
 
 
 

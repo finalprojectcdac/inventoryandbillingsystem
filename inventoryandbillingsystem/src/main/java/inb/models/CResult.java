@@ -17,6 +17,7 @@ public class CResult {
 	private String reason;
 	private Invoices contentinvoice;
 	private List<Inventory> invList;
+	private List<Invoices> invoiceList;
 	private Invoices invoice;
 	
 	public CResult(  List<Inventory> invList,String reason, int status) {
@@ -25,6 +26,18 @@ public class CResult {
 		this.reason = reason;
 		this.invList = invList;
 	}
+	
+	public List<Invoices> getInvoiceList() {
+		return invoiceList;
+	}
+
+
+
+	public void setInvoiceList(List<Invoices> invoiceList) {
+		this.invoiceList = invoiceList;
+	}
+
+
 
 	public List<Inventory> getInvList() {
 		return invList;
