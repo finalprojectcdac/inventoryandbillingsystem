@@ -2,9 +2,11 @@ package inb.service;
 
 import java.util.*;
 
+import org.apache.catalina.valves.CrawlerSessionManagerValve;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import inb.dao.EmployeeRepository;
 import inb.dao.InventoryRepository;
 
 import inb.dao.InvoiceRepository;
@@ -13,6 +15,7 @@ import inb.dao.RetailPriceDataRepository;
 import inb.dao.SupplierRecordRepository;
 import inb.models.BillingObject;
 import inb.models.CResult;
+import inb.models.Employee;
 import inb.models.Inventory;
 import inb.models.Invoices;
 import inb.models.ItemSale;
@@ -42,7 +45,9 @@ public class ServiceImplementation implements ServiceInterface {
 	
 	@Autowired
 	private ItemSaleRepository isr;
-	
+
+	@Autowired
+	private EmployeeRepository er;
 
 
 	
@@ -69,40 +74,9 @@ public class ServiceImplementation implements ServiceInterface {
 		
 	}
 	
-	//supplier
-	//this is registersupplier by maahi
-	public CResult RegisterSupplier(SupplierRecord s) {//by sandipan
-		CResult c1 =new CResult(0, s, "failed due to user");
-		try {
-			sr.save(s);
-			c1.setStatus(1);
-			c1.setReason("success");
-			//item.toString();
-			System.out.println(s);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			System.out.println("if if fails we think why");
-		}
-		
-		return c1;
-	}
+	
 
-	//created by vaibhav
-	// addItem Inventory
-	public CResult addMultipleItems(List<Inventory> lsi) {
-		CResult c1 =new CResult(0, "failed due to user");
-		System.out.println(lsi);
-		try {
-			ar.saveAll(lsi);
-			c1.setStatus(1);
-			c1.setReason("success");
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-		}
-		return c1;
-	}
+	
 
 //addInvoices Invoices
 // created by Shubham
@@ -141,48 +115,7 @@ public CResult getItem(String item_code) {
 }
 
 
-//get supplier based on name SUPPLIER
-//Vaibhav
-@Override
-public CResult getSupplierDetails(String supplier_name) {
-	// TODO Auto-generated method stub
-	
-//	  List<SupplierRecord> l=new ArrayList<SupplierRecord>();
-//	  CResult x=new CResult(0,l,"failed due to user");
-//	  l.addAll(sr.f1(supplier_name));
-//	  x.setReason("success");
-//      x.setStatus(1);
-//      x.setSupplierdtls(l);
-//     //System.out.println(l);
-     
-//	CResult c1 =new CResult(0, new SupplierRecord(), "failed due to user");
-//	Optional<SupplierRecord> i = sr.findById(supplier_name);
-//	if(i.isPresent())
-//	{
-//		SupplierRecord x = i.get();
-//		c1.setReason("success");
-//		c1.setStatus(1);
-//		c1.setContentsupplier(x);
-//	}
-//	else
-//		System.out.println("did not get the object");	
-//	
-//	return c1;
-	
-	CResult c1 = new CResult(0, new SupplierRecord(), "failed due to user");
-	SupplierRecord s = sr.f2(supplier_name);
-	
-	System.out.println(s);
-	if(s==null) {
-		c1.setReason("Supplier not found");
-	}
-		else {
-			c1.setStatus(1);
-			c1.setContentsupplier(s);
-			c1.setReason("Supplier found");
-		}
-	return c1;
-}
+
 
 
 //real Time data from Inventory
@@ -222,72 +155,15 @@ public void insertIntoItemSale() {//test
 
 
 
-
+//=======================================BILLING FUNCTION============
 //invoice details INVOICES
-//by shubham sharma
-public String getSalesInvoiceNofromDB() {
-	// TODO Auto-generated method stub
-	int x=ir.f1();
-	
-	return String.valueOf(x);
-}
 
 
-//this function will return specific fields like (item_code,brand,item_name,quantity,unit_measurement)
-//from BillingObject and selling_price from RetailPriceData
-//by maahi
-@Override
-public CResult getItemDetailsForSale(String item_code) { //by maahi
-	// TODO Auto-generated method stub
-	Inventory inv = new Inventory();            //postman testing completed
-	RetailPriceData rp= new RetailPriceData();
-	CResult c1 =new CResult(0, new BillingObject(), "failed due to user");
-	BillingObject bo = new BillingObject();
-	Optional<Inventory> i = ar.findById(item_code);
-	Optional<RetailPriceData> r = rr.findById(item_code);
-	
-	if(i.isPresent() && r.isPresent()) {
-		c1.setReason("item found");
-		c1.setStatus(1);
-		inv = i.get();
-		
-		rp = r.get();
-		bo.setItem_code(inv.getItem_code());
-		bo.setBrand(inv.getBrand());
-		bo.setItem_name(inv.getItem_name());
-		bo.setUnit_measurement(inv.getUnit_measurement());
-		bo.setQuantity(inv.getQuantity());
-		bo.setSelling_price(rp.getSelling_price());
-		c1.setBo(bo);
-		
-	}
-	
-	else if(i.isPresent()) {
-		c1.setReason(" only inventory found");
-		c1.setStatus(2);
-		inv = i.get();
-		bo.setItem_code(inv.getItem_code());
-		System.out.println(inv.getItem_code());
-		bo.setBrand(inv.getBrand());
-		bo.setItem_name(inv.getItem_name());
-		bo.setUnit_measurement(inv.getUnit_measurement());
-		bo.setQuantity(inv.getQuantity());
-		bo.setSelling_price(-1);
-		c1.setBo(bo);
-	}
-	
-	else if(r.isPresent()) {
-		c1.setReason(" only Retail data found");
-		c1.setStatus(3);
-	}
-		else {
-			c1.setStatus(-1);
-			c1.setReason(" no item found");
-		}
-	
-	return c1;
-	
-}
+
+//this function will return specific fields like 
+//(item_code,brand,item_name,quantity,unit_measurement)from INVENTORY
+//and  selling_price from RetailPriceData
+
 
 
 
@@ -318,58 +194,11 @@ public CResult getItemDetailsForSale(String item_code) { //by maahi
 
 
 
-@Override
-public CResult insertListofItemsale(List<ItemSale> list) {
-	// TODO Auto-generated method stub
-	CResult c1 =new CResult(0, "failed due to user");
-	try {
-		isr.saveAll(list);
-		c1.setStatus(1);
-		c1.setReason("success");
-	}
-	catch(Exception e)
-	{
-		e.printStackTrace();
-	}
-	return c1;
-
-}
 
 
-public CResult getCustomerDetails(String mobile_no) {
-	CResult c1 =new CResult(0,new Invoices() , "failed due to user");
-	Invoices invo = ir.searchByMobileNo(mobile_no);
-	
-	if(invo == null)
-	{
-		c1.setReason("Supplier not found");
-	}
-	else {
-		System.out.println("heyy");	
-	
-	c1.setReason("Success");
-	c1.setStatus(1);
-	c1.setContentinvoice(invo);
-	}
-	return c1;
- }
 
-//insertInvoice function done by shubham
-@Override
-public CResult insertInvoices(Invoices invoice) {
-	// TODO Auto-generated method stub
-	CResult c1 =new CResult(0, new Invoices(), "failed due to user");
-	try {
-		ir.save(invoice);//changed by sandipan 
-		c1.setStatus(1);
-		c1.setContentinvoice(invoice);
-		c1.setReason("success");
-	} catch (Exception e) {
-		// TODO Auto-generated catch block
-		System.out.println("if if fails we think why");
-	}
-	return c1;
- }
+
+
 
 
 
@@ -458,25 +287,251 @@ public CResult setSellingPrice(RetailPriceData rpd) {  //postman testing complet
 	return c;
 }
 
-//function to add list of RetailPriceData objects by sagar
+
+
+
 @Override
-public CResult addNewItemToRetailPriceData(List<RetailPriceData> rpd) { //by sagar
+public CResult updateInventoryAndSellingPriceData(BillingObject bo) {
+	CResult c1 = new CResult(0, "Failed");
+	Optional<Inventory> i = ar.findById(bo.getItem_code());
+	if(i.get().getItem_code() == bo.getItem_code()) {
+	Inventory inv = i.get();
+	inv.setItem_code(bo.getItem_code());
+	inv.setBrand(bo.getBrand());
+	inv.setItem_category(bo.getItem_category());
+	inv.setItem_name(bo.getItem_name());
+	inv.setQuantity(bo.getQuantity());
+	inv.setUnit_price(bo.getUnit_price());
+	inv.setUnit_measurement(bo.getUnit_measurement());
+	inv.setTotal_value(inv.getUnit_price()*inv.getQuantity());
+	ar.save(inv);
+	RetailPriceData rpd = new RetailPriceData(bo.getItem_code(), bo.getSelling_price());
+	rr.save(rpd);
+	c1.setStatus(1);
+	c1.setReason("Success");
+	}
+	
+	return c1;
+}
+//==========================================INVENTORY FUNCTIONS==================
+
+//get supplier based on name SUPPLIER
+//Vaibhav
+@Override
+public CResult getSupplierDetails(String supplier_name) {
 	// TODO Auto-generated method stub
 	
-	//new task:: to check my list conatain 1 : if yes then dont updtae
-	//if conatin -1 then set -1
-	//do it using .save
-	CResult c = new CResult(0, "nothing done");
-	for(int i=0;i<rpd.size();i++) {
-		float selling_price=rpd.get(i).getSelling_price();
-		if(selling_price==-1) {
-			rr.save(rpd.get(i));
-			c.setStatus(1);
-			c.setReason("sucess");
+//	  List<SupplierRecord> l=new ArrayList<SupplierRecord>();
+//	  CResult x=new CResult(0,l,"failed due to user");
+//	  l.addAll(sr.f1(supplier_name));
+//	  x.setReason("success");
+//    x.setStatus(1);
+//    x.setSupplierdtls(l);
+//   //System.out.println(l);
+   
+//	CResult c1 =new CResult(0, new SupplierRecord(), "failed due to user");
+//	Optional<SupplierRecord> i = sr.findById(supplier_name);
+//	if(i.isPresent())
+//	{
+//		SupplierRecord x = i.get();
+//		c1.setReason("success");
+//		c1.setStatus(1);
+//		c1.setContentsupplier(x);
+//	}
+//	else
+//		System.out.println("did not get the object");	
+//	
+//	return c1;
+	
+	CResult c1 = new CResult(0, new SupplierRecord(), "failed due to user");
+	SupplierRecord s = sr.f2(supplier_name);
+	
+	System.out.println(s);
+	if(s==null) {
+		c1.setReason("Supplier not found");
+	}
+		else {
+			c1.setStatus(1);
+			c1.setContentsupplier(s);
+			c1.setReason("Supplier found");
 		}
+	return c1;
+}
+
+//created by vaibhav
+	// addItem Inventory
+	public CResult addMultipleItems(List<Inventory> lsi) {
+		CResult c1 =new CResult(0, "failed due to user");
+		System.out.println(lsi);
+		try {
+			ar.saveAll(lsi);
+			c1.setStatus(1);
+			c1.setReason("success");
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		return c1;
 	}
 
-	return c;
+	//supplier
+		//this is registersupplier by maahi
+		public CResult RegisterSupplier(SupplierRecord s) {//by sandipan
+			CResult c1 =new CResult(0, s, "failed due to user");
+			try {
+				sr.save(s);
+				c1.setStatus(1);
+				c1.setReason("success");
+				//item.toString();
+				System.out.println(s);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				System.out.println("if if fails we think why");
+			}
+			
+			return c1;
+		}
+		
+		
+		//function to add list of RetailPriceData objects by sagar
+		@Override
+		public CResult addNewItemToRetailPriceData(List<RetailPriceData> rpd) { //by sagar
+			// TODO Auto-generated method stub
+			
+			//new task:: to check my list conatain 1 : if yes then dont updtae
+			//if conatin -1 then set -1
+			//do it using .save
+			CResult c = new CResult(0, "nothing done");
+			for(int i=0;i<rpd.size();i++) {
+				float selling_price=rpd.get(i).getSelling_price();
+				if(selling_price==-1) {
+					rr.save(rpd.get(i));
+					c.setStatus(1);
+					c.setReason("sucess");
+				}
+			}
+
+			return c;
+		}
+//==========================================BILLING FUNCTIONS==================
+
+
+//by shubham sharma
+public String getSalesInvoiceNofromDB() {
+	// TODO Auto-generated method stub
+	int x=ir.f1();
+	
+	return String.valueOf(x);
+}
+
+
+//by Maahi
+@Override
+public CResult getItemDetailsForSale(String item_code) { //by maahi
+	// TODO Auto-generated method stub
+	Inventory inv = new Inventory();            //postman testing completed
+	RetailPriceData rp= new RetailPriceData();
+	CResult c1 =new CResult(0, new BillingObject(), "failed due to user");
+	BillingObject bo = new BillingObject();
+	Optional<Inventory> i = ar.findById(item_code);
+	Optional<RetailPriceData> r = rr.findById(item_code);
+	
+	if(i.isPresent() && r.isPresent()) {
+		c1.setReason("item found");
+		c1.setStatus(1);
+		inv = i.get();
+		
+		rp = r.get();
+		bo.setItem_code(inv.getItem_code());
+		bo.setBrand(inv.getBrand());
+		bo.setItem_name(inv.getItem_name());
+		bo.setUnit_measurement(inv.getUnit_measurement());
+		bo.setQuantity(inv.getQuantity());
+		bo.setSelling_price(rp.getSelling_price());
+		c1.setBo(bo);
+		
+	}
+	
+	else if(i.isPresent()) {
+		c1.setReason(" only inventory found");
+		c1.setStatus(2);
+		inv = i.get();
+		bo.setItem_code(inv.getItem_code());
+		System.out.println(inv.getItem_code());
+		bo.setBrand(inv.getBrand());
+		bo.setItem_name(inv.getItem_name());
+		bo.setUnit_measurement(inv.getUnit_measurement());
+		bo.setQuantity(inv.getQuantity());
+		bo.setSelling_price(-1);
+		c1.setBo(bo);
+	}
+	
+	else if(r.isPresent()) {
+		c1.setReason(" only Retail data found");
+		c1.setStatus(3);
+	}
+		else {
+			c1.setStatus(-1);
+			c1.setReason(" no item found");
+		}
+	
+	return c1;
+	
+}
+
+public CResult getCustomerDetails(String mobile_no) {
+	CResult c1 =new CResult(0,new Invoices() , "failed due to user");
+	Invoices invo = ir.searchByMobileNo(mobile_no);
+	
+	if(invo == null)
+	{
+		c1.setReason("Supplier not found");
+	}
+	else {
+		System.out.println("heyy");	
+	
+	c1.setReason("Success");
+	c1.setStatus(1);
+	c1.setContentinvoice(invo);
+	}
+	return c1;
+ }
+
+
+
+@Override //Shubham
+public CResult insertListofItemsale(List<ItemSale> list) {
+	// TODO Auto-generated method stub
+	CResult c1 =new CResult(0, "failed due to user");
+	try {
+		isr.saveAll(list); //insert into ITEM_SALES table.
+		c1.setStatus(1);
+		c1.setReason("success");
+	}
+	catch(Exception e)
+	{
+		e.printStackTrace();
+	}
+	return c1;
+
+}
+
+//insertInvoice function done by shubham
+@Override
+public CResult insertInvoices(Invoices invoice) {
+	// TODO Auto-generated method stub
+	CResult c1 =new CResult(0, new Invoices(), "failed due to user");
+	try {
+		ir.save(invoice);//changed by sandipan 
+		c1.setStatus(1);
+		c1.setContentinvoice(invoice);
+		c1.setReason("success");
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		System.out.println("if if fails we think why");
+	}
+	return c1;
 }
 
 @Override
@@ -505,29 +560,62 @@ public CResult updateItemQuantity(List<Inventory> updateQuantityList) {
 	return c1;
 }
 
+//============================================User==============================
 @Override
-public CResult updateInventoryAndSellingPriceData(BillingObject bo) {
-	CResult c1 = new CResult(0, "Failed");
-	Optional<Inventory> i = ar.findById(bo.getItem_code());
-	if(i.get().getItem_code() == bo.getItem_code()) {
-	Inventory inv = i.get();
-	inv.setItem_code(bo.getItem_code());
-	inv.setBrand(bo.getBrand());
-	inv.setItem_category(bo.getItem_category());
-	inv.setItem_name(bo.getItem_name());
-	inv.setQuantity(bo.getQuantity());
-	inv.setUnit_price(bo.getUnit_price());
-	inv.setUnit_measurement(bo.getUnit_measurement());
-	inv.setTotal_value(inv.getUnit_price()*inv.getQuantity());
-	ar.save(inv);
-	RetailPriceData rpd = new RetailPriceData(bo.getItem_code(), bo.getSelling_price());
-	rr.save(rpd);
-	c1.setStatus(1);
-	c1.setReason("Success");
+public CResult login(String empId, String password) {
+	// TODO Auto-generated method stub
+	Employee employee = new Employee();
+	CResult cr= new CResult(0, "Invalid Credentials", employee);
+	Optional<Employee> emp=er.findById(empId);
+	if(emp.isPresent()) {
+		employee=emp.get();
+		if(employee.getPassword().equals(password)) {
+			cr.setEmployee(employee);
+			cr.setStatus(1);
+			cr.setReason("Login Sucess!!");	
+		}
+		else {
+			cr.setStatus(-1);
+			cr.setReason("Incorrect Password");	
+		}	
+		}
+	else
+	{
+		cr.setStatus(-2);
+		cr.setReason("Employee Not Found!!");
 	}
-	
-	return c1;
+	return cr;
 }
+
+@Override
+public CResult getListOfEmployees() {
+	// TODO Auto-generated method stub
+	CResult cr=new CResult(null, 0,"failed");
+	List <Employee> empList= new ArrayList<>();
+	empList=er.findAll();
+	cr.setStatus(1);
+	cr.setReason("sucess");
+	cr.setEmpList(empList);
+	
+	return cr;
+}
+
+@Override
+public CResult setEmployeeDetails(Employee emp) {
+	// TODO Auto-generated method stub
+	CResult cr= new CResult(0, "failed");
+	emp.setPassword(emp.getEmpId().toUpperCase()+"@"+emp.getDob());
+    String date=emp.getDob().substring(0, 2);
+    String month=emp.getDob().substring(2, 4);
+    String year=emp.getDob().substring(4);
+    emp.setDob(date+"/"+month+"/"+year);
+    er.save(emp);
+    cr.setStatus(1);
+    cr.setReason("sucess");
+    
+	return cr;
+}
+
 
 
 

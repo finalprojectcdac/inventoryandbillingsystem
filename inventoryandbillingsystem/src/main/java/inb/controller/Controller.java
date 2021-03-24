@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import inb.models.BillingObject;
 import inb.models.CResult;
+import inb.models.Employee;
 import inb.models.Inventory;
 import inb.models.Invoices;
 import inb.models.ItemSale;
@@ -56,20 +58,9 @@ public class Controller
 	 * CResult x= s.addInvoices(invoice); return x; }
 	 */
 	
-	@PutMapping("/saveinventorypage") // created by vaibhav// final done
-	public CResult addAllItems(@RequestBody ArrayList<Inventory> lsi)
-	{
-		System.out.println("save inventory called");
-		CResult x = s.addMultipleItems(lsi);
-		return x;
-	}
 	
-	@PutMapping("/saveSupplierRecordFromInventorypage")// final done
-	public CResult addSupplier(@RequestBody SupplierRecord a){
-		System.out.println("save supplier called");
-		CResult x=s.RegisterSupplier(a);
-		return x;
-	}
+	
+	
 	
 	@GetMapping("/getitemdetailsfrominventorytable")
 	public CResult getItemDetails(@RequestParam String item_code) {
@@ -79,13 +70,7 @@ public class Controller
 	return x;
 	}
 	
-	@GetMapping("/getsupplierdetailsfromSupplierRecord")
-	public CResult getSupplierDetails(@RequestParam String supplier_name) {
-		//we have to make the function call here
-		System.out.println(supplier_name);
-		CResult x=s.getSupplierDetails(supplier_name);
-	return x;
-	}
+	
 	  ///
 	@GetMapping("/getinvoicesdetailsfromInvoices")
 	public CResult getInvoicesDetails(@RequestParam String mobile_no) {
@@ -95,11 +80,7 @@ public class Controller
 	return x;
 	}
 	
-	@GetMapping("/getRealTimeData")
-	public CResult getRealTimeData() {
-		CResult x = s.getRealTimeData();
-		return x;
-	}
+	
 	
 	
 	
@@ -109,51 +90,19 @@ public class Controller
 	
 	
 	
-	//controller function for the billing 
-	@GetMapping("/getSalesInvoicenumber")//done post man testing by sandipan
-	public String getSaleInvoiceNo() {
-		//s.insertIntoItemSale();
-		String x=s.getSalesInvoiceNofromDB();
-		return x;
-		
-	}
+	
 	
 
-	@PutMapping("/ListItemsinserttoItemSale")//done post man testing by sandipan
-	public CResult insertListOfItems(@RequestBody List<ItemSale> list) {
-		
-		CResult y=s.insertListofItemsale(list);
-		return y;
-		
-	}
 	
-	@GetMapping("/getCustomerdetailsfromInvoices") //postman testing by shubham sharma
-	public CResult getCustomerDetails(@RequestParam String mobile_no) {
-		//we have to make the function call here
-		System.out.println(mobile_no);
-		CResult x=s.getCustomerDetails(mobile_no);
-	return x;
-	}
+	
 	
 
 
-@PutMapping("/insertInvoicefromInvoices") //postman testing done by shubham
-public CResult insertInvoices(@RequestBody Invoices invoice)
-{
-	CResult x = s.insertInvoices(invoice);
-	return x;
-}
+
 //==========================================================billing===================
 
 
-    //controller function for getting item details for sale	
-	@GetMapping("/getitemdetailsforsale") //maahi
-	public CResult getItemDetailsForSale(@RequestParam String item_code) {
-		System.out.println(item_code);
-		CResult c=s.getItemDetailsForSale(item_code);
-		System.out.println(c);
-		return c;
-	}
+    
 	
 	//controller function to update item quantity
 //	@PostMapping("/updateitemquantity") //maahi
@@ -161,11 +110,7 @@ public CResult insertInvoices(@RequestBody Invoices invoice)
 //		CResult c = s.updateItemQuantity(quantity,item_code);
 //		return c;
 //	}
-	@PutMapping("/updateitemquantity") //maahi
-	public CResult updateItemQuantity(@RequestBody List <Inventory> updateQuantityList) {
-		CResult c = s.updateItemQuantity(updateQuantityList);
-		return c;
-	}
+	
 //================================================================================================
 
 @GetMapping("/getArrayOfBillingObject") //sagar
@@ -192,13 +137,7 @@ public CResult getCurrentStock() {
 		return c;
 	}
 	
-//controller funtion for getting list of RetailPriceData objects by sagar
-	@PutMapping("/addItemsToRetailPriceData")
-	public CResult addItemsToRetailPriceData(@RequestBody List<RetailPriceData> rpdList) {
-		System.out.println("working");
-		CResult c = s.addNewItemToRetailPriceData(rpdList);  //postman testing done by sagar
-		return c;
-	}
+
 	
 	//controller function for updating all the details of inventory including the selling price in the retail_price_data
 	@PutMapping("updateInventoryAndSellingPrice")
@@ -208,6 +147,123 @@ public CResult getCurrentStock() {
 	CResult c = s.updateInventoryAndSellingPriceData(bo);
 	return c;
 	}
-
-
+//==============================REAL TIME DATA FUNCTIONS==========================================
+	
+	@GetMapping("/getRealTimeData")
+	public CResult getRealTimeData() {
+		CResult x = s.getRealTimeData();
+		return x;
+	}
+	
+//==============================INVENTORY FUNCTIONS==========================================
+	//=====================fetching functions===========================
+	//"/getitemdetailsforsale" :-already in billing functions
+	@GetMapping("/getsupplierdetailsfromSupplierRecord")
+	public CResult getSupplierDetails(@RequestParam String supplier_name) {
+		//we have to make the function call here
+		System.out.println(supplier_name);
+		CResult x=s.getSupplierDetails(supplier_name);
+	return x;
+	}
+	
+	
+	//=====================Inserting/Updating functions===========================
+	// created by vaibhav
+	@PutMapping("/saveinventorypage") 
+	public CResult addAllItems(@RequestBody ArrayList<Inventory> lsi)
+	{
+		System.out.println("save inventory called");
+		CResult x = s.addMultipleItems(lsi);
+		return x;
+	}
+	
+	@PutMapping("/saveSupplierRecordFromInventorypage")// final done
+	public CResult addSupplier(@RequestBody SupplierRecord a){
+		System.out.println("save supplier called");
+		CResult x=s.RegisterSupplier(a);
+		return x;
+	}
+	
+	
+	@PutMapping("/addItemsToRetailPriceData")
+		public CResult addItemsToRetailPriceData(@RequestBody List<RetailPriceData> rpdList) {
+			System.out.println("working");
+			CResult c = s.addNewItemToRetailPriceData(rpdList);  
+			return c;
+		}
+//==============================BILLING FUNCTIONS==========================================
+	//=====================fetching functions===========================
+	
+// by Sandipan
+//the function returns the current bill no to be generated 	
+		@GetMapping("/getSalesInvoicenumber")
+		public String getSaleInvoiceNo() {
+			//s.insertIntoItemSale();
+			String x=s.getSalesInvoiceNofromDB();
+			return x;
+			
+		}
+		
+//controller function for getting item details for sale	
+//by Maahi
+		@GetMapping("/getitemdetailsforsale") 
+		public CResult getItemDetailsForSale(@RequestParam String item_code) {
+			System.out.println(item_code);
+			CResult c=s.getItemDetailsForSale(item_code);
+			System.out.println(c);
+			return c;
+		}
+		
+		
+		@GetMapping("/getCustomerdetailsfromInvoices") //postman testing by shubham sharma
+		public CResult getCustomerDetails(@RequestParam String mobile_no) {
+			//we have to make the function call here
+			System.out.println(mobile_no);
+			CResult x=s.getCustomerDetails(mobile_no);
+		return x;
+		}
+//=====================Inserting/Updating functions===========================
+       //by Sandipan
+         //this function 
+		@PutMapping("/ListItemsinserttoItemSale")
+		public CResult insertListOfItems(@RequestBody List<ItemSale> list) {
+			
+			CResult y=s.insertListofItemsale(list);
+			return y;
+		}
+		
+		// By Shubham
+		@PutMapping("/insertInvoicefromInvoices") 
+		public CResult insertInvoices(@RequestBody Invoices invoice)
+		{
+			CResult x = s.insertInvoices(invoice);
+			return x;
+		}
+		
+		//By Maahi		
+		@PutMapping("/updateitemquantity") 
+		public CResult updateItemQuantity(@RequestBody List <Inventory> updateQuantityList) {
+			CResult c = s.updateItemQuantity(updateQuantityList);
+			return c;
+		}
+//===================================USERS=========================
+		
+	@GetMapping("/login")	
+	public CResult login(@RequestParam String empId, @RequestParam String password) {
+		CResult cforUser=s.login(empId,password);
+		return cforUser;
+	}
+	
+	@GetMapping("/getListOfEmployees")
+	public CResult getListOfEmployees() {
+		CResult cforemplist=s.getListOfEmployees();
+		return cforemplist;
+	}
+	@PutMapping("/setEmployeeDetails")
+      public CResult setEmployeeDetails(@RequestBody Employee emp) {
+		CResult cforSetEmp=s.setEmployeeDetails(emp);
+		return cforSetEmp;
+	}
+	
+	
 }

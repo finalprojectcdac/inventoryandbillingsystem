@@ -18,7 +18,39 @@ public class CResult {
 	private Invoices contentinvoice;
 	private List<Inventory> invList;
 	private Invoices invoice;
+	private Employee employee;
+	private List<Employee> empList;
 	
+	public CResult( List<Employee> empList, int status,String reason) {
+		super();
+		this.status = status;
+		this.reason = reason;
+		this.empList = empList;
+	}
+
+	public List<Employee> getEmpList() {
+		return empList;
+	}
+
+	public void setEmpList(List<Employee> empList) {
+		this.empList = empList;
+	}
+
+	public Employee getEmployee() {
+		return employee;
+	}
+
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
+	}
+
+	public CResult(int status, String reason, Employee employee) {
+		super();
+		this.status = status;
+		this.reason = reason;
+		this.employee = employee;
+	}
+
 	public CResult(  List<Inventory> invList,String reason, int status) {
 		super();
 		this.status = status;
