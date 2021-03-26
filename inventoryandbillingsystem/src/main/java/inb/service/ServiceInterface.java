@@ -49,7 +49,7 @@ public interface ServiceInterface {
 	CResult login(String empId, String password);
 	CResult setEmployeeDetails(Employee emp);
 	CResult getListOfEmployees();
-	
+	CResult getEmployeeDetails(String empId);
 	
 	//inventory 
 	// getItemDetailsForSale
@@ -65,5 +65,6 @@ public interface ServiceInterface {
 	CResult insertListofItemsale(List<ItemSale> list);//for inserting list of item to item_sale table
 	CResult insertInvoices(Invoices invoice);
 	CResult updateItemQuantity(List<Inventory> updateQuantityList);
+	
 
 }

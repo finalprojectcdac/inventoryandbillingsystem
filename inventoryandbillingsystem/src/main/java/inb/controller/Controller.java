@@ -263,6 +263,8 @@ public CResult getCurrentStock() {
 		
 	@GetMapping("/login")	
 	public CResult login(@RequestParam String empId, @RequestParam String password) {
+		System.out.println(empId);
+		System.out.println(password);
 		CResult cforUser=s.login(empId,password);
 		return cforUser;
 	}
@@ -276,6 +278,13 @@ public CResult getCurrentStock() {
       public CResult setEmployeeDetails(@RequestBody Employee emp) {
 		CResult cforSetEmp=s.setEmployeeDetails(emp);
 		return cforSetEmp;
+	}
+	
+	@GetMapping("/getEmployeeDetails")
+	public CResult getEmployeeDetails(@RequestParam String empId) {
+		System.out.println(empId);
+		CResult cforGetEmp = s.getEmployeeDetails(empId);
+		return cforGetEmp;
 	}
 	
 	

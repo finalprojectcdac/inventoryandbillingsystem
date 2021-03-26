@@ -632,15 +632,35 @@ public CResult getListOfEmployees() {
 public CResult setEmployeeDetails(Employee emp) {
 	// TODO Auto-generated method stub
 	CResult cr= new CResult(0, "failed");
-	emp.setPassword(emp.getEmpId().toUpperCase()+"@"+emp.getDob());
-    String date=emp.getDob().substring(0, 2);
-    String month=emp.getDob().substring(2, 4);
-    String year=emp.getDob().substring(4);
-    emp.setDob(date+"/"+month+"/"+year);
+    String date=emp.getDob().substring(8, 10);
+    String month=emp.getDob().substring(5, 7);
+    String year=emp.getDob().substring(0, 4);
+    emp.setPassword(emp.getEmpId().toUpperCase()+"@"+date+month+year);
     er.save(emp);
     cr.setStatus(1);
     cr.setReason("sucess");
     
+	return cr;
+}
+
+
+
+
+
+@Override
+public CResult getEmployeeDetails(String empId) {
+	Employee emp = new Employee();
+	CResult cr = new CResult(0, "Failed", emp);
+	Optional<Employee> o=er.findById(empId);
+	if(o.isPresent()) {
+		emp = o.get();
+		cr.setStatus(1);
+		cr.setReason("Employee found");
+		cr.setEmployee(emp);
+	} else {
+		cr.setStatus(-1);
+		cr.setReason("Employee not found");
+	}
 	return cr;
 }
 
