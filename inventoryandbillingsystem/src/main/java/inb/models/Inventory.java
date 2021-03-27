@@ -16,7 +16,10 @@ public class Inventory
 	private String brand, item_name, unit_measurement, stock_entry_date, item_category, supplier_invoice_no;
 	private float unit_price, total_value;
 	private int quantity;
-	
+	public Inventory() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 	public Inventory(String item_code, String brand, String item_name, String unit_measurement, String stock_entry_date,
 			String item_category, String supplier_invoice_no, float unit_price, float total_value, int quantity) {
 		super();
@@ -31,14 +34,6 @@ public class Inventory
 		this.total_value = total_value;
 		this.quantity = quantity;
 	}
-	
-	public Inventory()
-	{
-		super();
-	}
-
-
-
 	public String getItem_code() {
 		return item_code;
 	}
@@ -99,7 +94,6 @@ public class Inventory
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
-
 	@Override
 	public String toString() {
 		return "Inventory [item_code=" + item_code + ", brand=" + brand + ", item_name=" + item_name
@@ -107,5 +101,8 @@ public class Inventory
 				+ ", item_category=" + item_category + ", supplier_invoice_no=" + supplier_invoice_no + ", unit_price="
 				+ unit_price + ", total_value=" + total_value + ", quantity=" + quantity + "]";
 	}
+	
+	
+	
 	
 }

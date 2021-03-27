@@ -11,12 +11,150 @@ public class CResult {
 	private SupplierRecord contentsupplier;
 	private List<SupplierRecord> supplierdtls;
 	private RealTimeData rtd;
-	
-	private Invoices invoice;
+	private RetailPriceData contentRpd;
+	private BillingObject bo;
+	private Invoices contantinvoice;
 	private String reason;
+	private Invoices contentinvoice;
+	private List<Inventory> invList;
+	private List<Invoices> invoiceList;
+	private Invoices invoice;
+	private Employee employee;
+	private List<Employee> empList;
+	
+	public CResult( List<Employee> empList, int status,String reason) {
+		super();
+		this.status = status;
+		this.reason = reason;
+		this.empList = empList;
+	}
+
+	public List<Employee> getEmpList() {
+		return empList;
+	}
+
+	public void setEmpList(List<Employee> empList) {
+		this.empList = empList;
+	}
+
+	public Employee getEmployee() {
+		return employee;
+	}
+
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
+	}
+
+	public CResult(int status, String reason, Employee employee) {
+		super();
+		this.status = status;
+		this.reason = reason;
+		this.employee = employee;
+	}
+
+	public CResult(  List<Inventory> invList,String reason, int status) {
+		super();
+		this.status = status;
+		this.reason = reason;
+		this.invList = invList;
+	}
+	
+	public List<Invoices> getInvoiceList() {
+		return invoiceList;
+	}
+
+
+
+	public void setInvoiceList(List<Invoices> invoiceList) {
+		this.invoiceList = invoiceList;
+	}
+
+
+
+	public List<Inventory> getInvList() {
+		return invList;
+	}
+
+	public void setInvList(List<Inventory> invList) {
+		this.invList = invList;
+	}
+
+	//sagar
+	private List<BillingObject> billingObjList;
+
+	
+	public CResult(int status, BillingObject bo, String reason) {
+		super();
+		this.status = status;
+		this.bo = bo;
+		this.reason = reason;
+	}
+
+	public BillingObject getBo() {
+		return bo;
+	}
+
+	public void setBo(BillingObject bo) {
+		this.bo = bo;
+	}
+
+	
+
+	public CResult(int status, RetailPriceData contentRpd, String reason) {
+		super();
+		this.status = status;
+		this.contentRpd = contentRpd;
+		this.reason = reason;
+	}
+
+	public RetailPriceData getContentRpd() {
+		return contentRpd;
+	}
+
+	public void setContentRpd(RetailPriceData contentRpd) {
+		this.contentRpd = contentRpd;
+	}
+	
+
+	
+
 	
 	
 	
+
+  //sagar
+	public CResult(int status, String reason, List<BillingObject> billingObjList) {
+		super();
+		this.status = status;
+		this.reason = reason;
+		this.billingObjList = billingObjList;
+	}
+
+	public List<BillingObject> getBillingObjList() {
+		return billingObjList;
+	}
+
+	public void setBillingObjList(List<BillingObject> billingObjList) {
+		this.billingObjList = billingObjList;
+	}
+
+////$
+	
+	public Invoices getContentinvoice() {
+		return contentinvoice;
+	}
+
+	public void setContentinvoice(Invoices contentinvoice) {
+		this.contentinvoice = contentinvoice;
+	}
+
+	public CResult(int status, String reason, Invoices contentinvoice) {
+		super();
+		this.status = status;
+		this.reason = reason;
+		this.contentinvoice = contentinvoice;
+	}
+
 	public CResult(int status, RealTimeData rtd, String reason) {
 		super();
 		this.status = status;
@@ -31,11 +169,13 @@ public class CResult {
 		this.reason = reason;
 	}
 	public Invoices getInvoice() {
-		return invoice;
+		return contantinvoice;
 	}
 	public void setInvoice(Invoices invoice) {
-		this.invoice = invoice;
+		this.contantinvoice = invoice;
 	}
+
+
 	public int getStatus() {
 		return status;
 	}
@@ -102,8 +242,17 @@ public class CResult {
 	public CResult(int status, Invoices invoice, String reason) {
 		super();
 		this.status = status;
-		this.invoice = invoice;
+
+		this.contantinvoice = invoice;
+
 		this.reason = reason;
+	}
+
+	public void setContentInvoices(Invoices content) {
+		// TODO Auto-generated method stub
+		this.contantinvoice =content;
 	}
 	
 }
+
+
