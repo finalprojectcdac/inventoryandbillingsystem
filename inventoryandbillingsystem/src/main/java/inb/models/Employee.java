@@ -6,9 +6,9 @@ import javax.persistence.Id;
 @Entity
 public class Employee {
 	@Id
-	String empId;
+	private String empId;
 	
-	String privilege, fName,lName,password,dob,dateOfJoining,state;
+	private String privilege, name,password,email;
 	
 	
 	
@@ -16,72 +16,85 @@ public class Employee {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	@Override
-	public String toString() {
-		return "Employee [empId=" + empId + ", privilege=" + privilege + ", fName=" + fName + ", lName=" + lName
-				+ ", password=" + password + ", dob=" + dob + ", dateOfJoining=" + dateOfJoining + ", state=" + state
-				+ ", loginStatus="  + "]";
-	}
-	public Employee(String empId, String privilege, String fName, String lName, String password, String dob,
-			String dateOfJoining, String state) {
+
+
+
+	public Employee(String empId, String privilege, String name, String password, String email) {
 		super();
 		this.empId = empId;
 		this.privilege = privilege;
-		this.fName = fName;
-		this.lName = lName;
+		this.name = name;
 		this.password = password;
-		this.dob = dob;
-		this.dateOfJoining = dateOfJoining;
-		this.state = state;
-		
+		this.email = email;
 	}
+
+
+
 	public String getEmpId() {
 		return empId;
 	}
+
+
+
 	public void setEmpId(String empId) {
 		this.empId = empId;
 	}
+
+
+
 	public String getPrivilege() {
 		return privilege;
 	}
+
+
+
 	public void setPrivilege(String privilege) {
 		this.privilege = privilege;
 	}
-	public String getfName() {
-		return fName;
+
+
+
+	public String getName() {
+		return name;
 	}
-	public void setfName(String fName) {
-		this.fName = fName;
+
+
+
+	public void setName(String name) {
+		this.name = name;
 	}
-	public String getlName() {
-		return lName;
-	}
-	public void setlName(String lName) {
-		this.lName = lName;
-	}
+
+
+
 	public String getPassword() {
 		return password;
 	}
+
+
+
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public String getDob() {
-		return dob;
+
+
+
+	public String getEmail() {
+		return email;
 	}
-	public void setDob(String dob) {
-		this.dob = dob;
+
+
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
-	public String getDateOfJoining() {
-		return dateOfJoining;
+
+
+
+	@Override
+	public String toString() {
+		return "Employee [empId=" + empId + ", privilege=" + privilege + ", name=" + name + ", password=" + password
+				+ ", email=" + email + "]";
 	}
-	public void setDateOfJoining(String dateOfJoining) {
-		this.dateOfJoining = dateOfJoining;
-	}
-	public String getState() {
-		return state;
-	}
-	public void setState(String state) {
-		this.state = state;
-	}
+
 	
 }

@@ -9,6 +9,7 @@ import inb.models.Invoices;
 import inb.models.ItemSale;
 import inb.models.RetailPriceData;
 import inb.models.SupplierRecord;
+import inb.models.UResult;
 
 public interface ServiceInterface {
 
@@ -46,10 +47,11 @@ public interface ServiceInterface {
 	CResult updateInventoryAndSellingPriceData(BillingObject bo);
 	CResult getPurchaseReport(String startDate, String endDate);
 	CResult getSalesReport(String startDate, String endDate);
-	CResult login(String empId, String password);
-	CResult setEmployeeDetails(Employee emp);
-	CResult getListOfEmployees();
-	CResult getEmployeeDetails(String empId);
+	UResult registerEmployee(Employee emp);
+	UResult login(String empId, String password);
+	UResult updateEmployeeDetails(Employee emp);
+	UResult getListOfEmployees();
+	UResult getEmployeeDetails(String empId);
 	
 	//inventory 
 	// getItemDetailsForSale
@@ -65,6 +67,7 @@ public interface ServiceInterface {
 	CResult insertListofItemsale(List<ItemSale> list);//for inserting list of item to item_sale table
 	CResult insertInvoices(Invoices invoice);
 	CResult updateItemQuantity(List<Inventory> updateQuantityList);
+	
 	
 
 }
