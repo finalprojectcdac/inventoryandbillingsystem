@@ -6,5 +6,4 @@ import inb.models.Employee;
 
 @Repository
 public interface EmployeeRepository extends JpaRepository<Employee, String>{
-
 }
