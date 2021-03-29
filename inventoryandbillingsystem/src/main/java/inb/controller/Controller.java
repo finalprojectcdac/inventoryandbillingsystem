@@ -24,7 +24,7 @@ import inb.models.UResult;
 import inb.models.User;
 import inb.service.ServiceInterface;
 
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "https://ibs-dev-app.herokuapp.com")
 @RestController
 public class Controller {
 	@Autowired
