@@ -15,7 +15,7 @@ import inb.models.Invoices;
 public interface InvoiceRepository extends JpaRepository<Invoices, String>{
 
 
-	@Query(nativeQuery=true, value="select count(*)+1 from invoices")
+	@Query(nativeQuery=true, value="select count(*)+1001 from invoices")
 	public int f1();
 
 
