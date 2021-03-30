@@ -131,6 +131,7 @@ public class Controller {
 
 	@GetMapping("getSalesReport")
 	public CResult getSalesReport(@RequestParam String startDate, @RequestParam String endDate) {
+		System.out.println(startDate);
 		CResult c1 = s.getSalesReport(startDate, endDate);
 		return c1;
 	}
