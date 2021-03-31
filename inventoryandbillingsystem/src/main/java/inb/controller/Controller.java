@@ -4,13 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import inb.models.BillingObject;
 import inb.models.CResult;
@@ -26,9 +29,12 @@ import inb.service.ServiceInterface;
 
 @CrossOrigin(origins = "https://ibs-dev-app.herokuapp.com")
 @RestController
-public class Controller {
+public class Controller implements ErrorController {
 	@Autowired
 	private ServiceInterface s;
+	
+	
+	private static final String PATH = "/error";
 
 	@PutMapping("/test")
 	public void test() {
@@ -48,6 +54,16 @@ public class Controller {
 		return u;
 
 	}
+	
+	@RequestMapping(value = PATH)
+    public ModelAndView saveLeadQuery() {           
+        return new ModelAndView("forward:/");
+    }
+
+    @Override
+    public String getErrorPath() {
+        return PATH;
+    }
 
 	/*
 	 * @GetMapping("/abc") public String f1() { return "hello"; }
