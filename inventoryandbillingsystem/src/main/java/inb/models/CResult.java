@@ -18,7 +18,6 @@ public class CResult {
 	private Invoices contentinvoice;
 	private List<Inventory> invList;
 	private List<Invoices> invoiceList;
-	private Invoices invoice;
 
 	public CResult(  List<Inventory> invList,String reason, int status) {
 		super();

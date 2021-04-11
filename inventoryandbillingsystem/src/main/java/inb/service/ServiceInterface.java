@@ -14,36 +14,15 @@ import inb.models.UResult;
 public interface ServiceInterface {
 
 	//CResult addItem(Inventory item);this was for testing 
-	
-	
-	CResult updateQuantity(Inventory item );
 	CResult addInvoices(Invoices invoice);
 	CResult getItem(String item_code);//by maahi
-	
-
-	CResult getRealTimeData();//For real time data updation.
-	void insertIntoItemSale();
-	
-	
-	
-	
-	
+	CResult getRealTimeData();//For real time data updation.	
 	CResult getCurrentStock();
-	
-	
 	//CResult updateItemQuantity(int quantity, String item_code);
-	
-
-	
-	
-	
 	//sagar
 	CResult getArrayOfBillingObject();
-	
 	//monitoring function by maahi
 	CResult setSellingPrice(RetailPriceData rpd);
-	
-	
 	CResult updateInventoryAndSellingPriceData(BillingObject bo);
 	CResult getPurchaseReport(String startDate, String endDate);
 	CResult getSalesReport(String startDate, String endDate);
