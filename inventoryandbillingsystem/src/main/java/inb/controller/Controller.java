@@ -239,11 +239,9 @@ public class Controller {
 		return ur;
 	}
 
-	@GetMapping("/login")
-	public UResult login(@RequestParam String empId, @RequestParam String password) {
-		System.out.println(empId);
-		System.out.println(password);
-		UResult ur = s.login(empId, password);
+	@PutMapping("/login")
+	public UResult login(@RequestBody Employee emp) {
+		UResult ur = s.login(emp.getEmpId(), emp.getPassword());
 		return ur;
 	}
 

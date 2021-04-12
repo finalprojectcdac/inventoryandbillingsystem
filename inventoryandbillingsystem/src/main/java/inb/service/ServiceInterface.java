@@ -48,5 +48,6 @@ public interface ServiceInterface {
 	CResult updateItemQuantity(List<Inventory> updateQuantityList);
 	
 	
+	
 
 }
